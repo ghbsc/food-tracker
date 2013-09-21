@@ -11,5 +11,5 @@ FoodTracker::Application.routes.draw do
   #end 
 
   devise_for :users
-  #resources :users
+  resources :users
 end
