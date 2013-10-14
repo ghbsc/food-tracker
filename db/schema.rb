@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130915190002) do
+ActiveRecord::Schema.define(version: 20131010040746) do
+
+  create_table "food_habits", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "amount"
+  end
+
+  create_table "food_habits_goals", id: false, force: true do |t|
+    t.integer "goal_id"
+    t.integer "food_habit_id"
+  end
+
+  create_table "goals", force: true do |t|
+    t.string   "main"
+    t.string   "preferred_units"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

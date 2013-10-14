@@ -23,13 +23,12 @@
     #scrubbed_key = key.dup.gsub! "_", " "
   end
 
-  food_habits_less.keys.sort 
+  #food_habits_less.keys.sort 
   food_habits_less.each { |key, value| FoodHabit.find_or_create_by(name: key, amount: value) }
   
   #More food habits
   food_habits_more = %w[Veggies Water Sleep Exercise Fiber Sunshine Relaxation].inject({}) { |hash, word| hash[word] = "more"; hash }
-  
-  food_habits_more.keys.sort
+
   food_habits_more.each do |key, value|
     FoodHabit.find_or_create_by(name: key, amount: value)
   end

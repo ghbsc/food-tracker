@@ -1,0 +1,4 @@
+class AddAmountToFoodHabit < ActiveRecord::Migration
+  def change
+  end
+end

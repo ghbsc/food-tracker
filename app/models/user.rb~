@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
+  
+  has_many :food_habits
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,9 +15,9 @@ class User < ActiveRecord::Base
 #  validates_inclusion_of :gender, :in => GENDERS,
 #            :message => "{{value}} must be in #{GENDERS.join ','}"
 
-  validates_presence_of :avatar
-  validates_integrity_of :avatar
-  validates_processing_of :avatar
+  #validates_presence_of :avatar
+  #validates_integrity_of :avatar
+  #validates_processing_of :avatar
 
   #before_save :set_birthday
 

@@ -1,0 +1,8 @@
+class CreateRenameFoodHabitToFoodHabitLookups < ActiveRecord::Migration
+  def change
+    create_table :rename_food_habit_to_food_habit_lookups do |t|
+
+      t.timestamps
+    end
+  end
+end

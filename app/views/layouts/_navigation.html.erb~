@@ -15,26 +15,39 @@
     <li><a href="/tips">
      Tips
      </a></li>
-  </ul>
+   </ul>
+ <% end %>
   <ul id="header-login" class="nav pull-right">
-   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      <img src="http://www.gravatar.com/avatar/b96635f98f5709967882af64ac9f742e?s=100&d=http%3A%2F%2Fwww.eatdifferent.com%2Fimg%2Fblankpic.png">
-      <span id="header-login-name"><%="#{current_user.first_name} current_user.last_name" %></span>
-      <span id="header-login-id" style="display:none"></span>
-      <b class="caret"></b>
-    </a>
-
-    <ul class="dropdown-menu">
-      <li><a href="/settings">Settings</a></li>
-      <li><a href="#" id="logout-button">Logout</a></li>
-    </ul>
-  </li> 
-<% else %>
-  <li>
-      <a href="/users/sign_in">
-        <span id="header-login-already" style="font-weight:normal; font-size: smaller;">Already a member?</span> Login
+  <% if user_signed_in? %>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="http://www.gravatar.com/avatar/b96635f98f5709967882af64ac9f742e?s=100&d=http%3A%2F%2Fwww.eatdifferent.com%2Fimg%2Fblankpic.png">
+        <span id="header-login-name"><%="#{current_user.first_name} #{current_user.last_name}" %></span>
+        <span id="header-login-id" style="display:none"></span>
+        <b class="caret"></b>
       </a>
-    </li>
+
+      <ul class="dropdown-menu">
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="#" id="logout-button">Logout</a></li>
+      </ul>
+    </li> 
+  <% else %>
+      <li>
+        <a href="/users/sign_in">
+          <span id="header-login-already" style="font-weight:normal; font-size: smaller;">Already a member?</span> Login
+        </a>
+      </li>
+  </ul>
+<% end %>
+
+<% if params[:controller] == 'goals' %>
+  <ul class="nav nav-tabs" id="content-nav">
+    <li><a href="/settings/profile">Profile</a>
+    <li><a href="/settings/goals">Goals</a> 
+    <li><a href="/settings/reminders">Reminders</a>
+    <li><a href="/settings/buddies">Buddies</a>
+    <li><a href="/settings/sharing">Sharing</a>
+    <li><a href="/settings/data">Data Import</a>
   </ul>
 <% end %>

@@ -1,0 +1,4 @@
+class DropTableRemoveGoalIdFromFoodHabits < ActiveRecord::Migration
+  def change
+  end
+end

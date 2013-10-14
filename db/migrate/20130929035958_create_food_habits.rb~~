@@ -1,0 +1,9 @@
+class CreateFoodHabits < ActiveRecord::Migration
+  def change
+    create_table :food_habits do |t|
+      t.belongs_to :goal
+      t.string :name
+      t.timestamps
+    end
+  end
+end
