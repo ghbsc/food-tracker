@@ -5660,7 +5660,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
 }
 
 #header #header-logo {
-  background-image: image-url("images/logo_long_trans.png");
+  background-image: image-url("logo_long_trans.png");
   width: 138px;
   height: 40px;
 }
@@ -6338,5 +6338,9 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
   #log-form #log-foodgoals-types .log-habits .colorslider-wrapper .colorslider-slider {
     background: url("images/sliderbg.png") no-repeat;
     border: 1px solid #ccc;
+  };
+
+  .log-tag-field-label .remove_tag {
+    font-size: 9px;
   };
 }

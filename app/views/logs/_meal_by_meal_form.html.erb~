@@ -1,0 +1,21 @@
+
+    <div class="log-meal controls" id="meals_fields_template" data-id="1381803857377">
+      <input type="hidden" name="meal-1381803857377_photo" class="log-meal-photo-json" data-propkey="mealsById.1381803857377.photoJSON">
+      <input type="hidden" name="meal-1381803857377_photo_data" class="log-meal-photo-data" data-propkey="mealsById.1381803857377.photoData" data-noreplace="">
+      
+      <div class="log-meal-side">
+        <select name="log[meals_attributes][][notes]" class="log-meal-when span2" data-propkey="mealsById.1381803857377.when">
+          <option value="12:00am">12:00am</option><option value="12:30am">12:30am</option><option value="1:00am">1:00am</option><option value="1:30am">1:30am</option><option value="2:00am">2:00am</option><option value="2:30am">2:30am</option><option value="3:00am">3:00am</option><option value="3:30am">3:30am</option><option value="4:00am">4:00am</option><option value="4:30am">4:30am</option><option value="5:00am">5:00am</option><option value="5:30am">5:30am</option><option value="6:00am">6:00am</option><option value="6:30am">6:30am</option><option value="7:00am">7:00am</option><option value="7:30am">7:30am</option><option value="8:00am">8:00am</option><option value="8:30am">8:30am</option><option value="9:00am">9:00am</option><option value="9:30am">9:30am</option><option value="10:00am">10:00am</option><option value="10:30am">10:30am</option><option value="11:00am">11:00am</option><option value="11:30am">11:30am</option><option value="12:00pm">12:00pm</option><option value="12:30pm">12:30pm</option><option value="1:00pm">1:00pm</option><option value="1:30pm">1:30pm</option><option value="2:00pm">2:00pm</option><option value="2:30pm">2:30pm</option><option value="3:00pm">3:00pm</option><option value="3:30pm">3:30pm</option><option value="4:00pm">4:00pm</option><option value="4:30pm">4:30pm</option><option value="5:00pm">5:00pm</option><option value="5:30pm">5:30pm</option><option value="6:00pm">6:00pm</option><option value="6:30pm">6:30pm</option><option value="7:00pm">7:00pm</option><option value="7:30pm">7:30pm</option><option value="8:00pm">8:00pm</option><option value="8:30pm">8:30pm</option><option value="9:00pm">9:00pm</option><option value="9:30pm">9:30pm</option><option value="10:00pm">10:00pm</option><option value="10:30pm">10:30pm</option><option value="11:00pm">11:00pm</option><option value="11:30pm">11:30pm</option>
+        </select>
+
+        <div class="log-meal-remove-button">
+          <a data-id="1381803857377" href="javascript:void(0);" tabindex="-1" data-toggle="modal" class="remove_child" data-target="#log-meal-remove-popup">Remove</a>
+        </div>
+      </div>
+
+      <button class="log-meal-photo-button btn btn-small" type="button" data-id="1381803857377" tabindex="-1" data-toggle="modal" data-target="#log-meal-photo-picker">
+        <img src="img/camerabutton.png" data-id="1381803857377" data-propkey="mealsById.1381803857377.photoUrl" data-noreplace="img/camerabutton.png">
+      </button>
+
+      <%= f.text_area :notes, class: "log-meal-what" %>
+    </div>

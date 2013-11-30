@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010040746) do
+ActiveRecord::Schema.define(version: 20131124165831) do
 
   create_table "food_habits", force: true do |t|
     t.string   "name"
@@ -31,6 +31,37 @@ ActiveRecord::Schema.define(version: 20131010040746) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "logs", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "logged_date"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "logs_tags", id: false, force: true do |t|
+    t.integer "log_id", null: false
+    t.integer "tag_id", null: false
+  end
+
+  add_index "logs_tags", ["log_id", "tag_id"], name: "index_logs_tags_on_log_id_and_tag_id", using: :btree
+  add_index "logs_tags", ["tag_id", "log_id"], name: "index_logs_tags_on_tag_id_and_log_id", using: :btree
+
+  create_table "meals", force: true do |t|
+    t.integer  "log_id"
+    t.datetime "eaten_at"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -54,7 +85,7 @@ ActiveRecord::Schema.define(version: 20131010040746) do
     t.string   "avatar"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   has_one :goal
+  has_many :logs
+  has_many :tags
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -20,8 +22,7 @@ class User < ActiveRecord::Base
   #validates_processing_of :avatar
 
   #before_save :set_birthday
-
-
+  
   def birthday_month
 
   end 

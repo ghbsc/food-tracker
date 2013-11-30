@@ -13,6 +13,7 @@ class GoalsController < ApplicationController
   end
 
   def create
+
     #@goal = current_user.create_goal(goal_params)
     @goal = current_user.build_goal(goal_params)
     #@goal.save
@@ -25,7 +26,6 @@ class GoalsController < ApplicationController
     else
       render "new"
     end
-
 #    params[:goal][:food_habits_less_names].each { |id| current_user.goal.food_habits_goals.create(food_habit_id: id, goal_id: @goal.id) } unless params[:goal][:food_habits_less_names].nil?
 #
 #    params[:goal][:food_habits_more_names].each { |id| current_user.goal.food_habits_goals.create(food_habit_id: id, goal_id: @goal.id) } unless params[:goal][:food_habits_more_names].nil?

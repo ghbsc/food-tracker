@@ -1,6 +1,10 @@
 FoodTracker::Application.routes.draw do
+  #get "logs/new"
+  #get "logs/edit"
   resources :goals, only: [:new, :create, :edit, :update] 
-  
+  resources :logs, only: [:new, :create, :edit, :update] 
+ 
+  get ':controller/:action/:id' 
   get "settings/goals"
   #get "/pages/*id" => 'pages#show'
   get '/about/' => 'pages#about'

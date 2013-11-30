@@ -1,5 +1,5 @@
 class AddForeignKeyConstraintToFoodHabits < ActiveRecord::Migration
-  add_foreign_key(:food_habits, :goals)
+  #add_foreign_key(:food_habits, :goals)
 
 
 #  def change

@@ -1,0 +1,792 @@
+
+
+<div class="container"> 
+    <div class="alert alert-success" style="display:none" id="anon-user-promo">
+      Want to improve your eating habits for the better? You can use our service to track your progress. <a href="/welcome">Learn more.</a>
+    </div>
+
+    
+<div class="page-header">
+<h1>
+  <button id="log-backwards-arrow" class="btn btn-small arrow-button" style="float:left" data-original-title="Edit the day before">←</button>
+  <button id="log-forwards-arrow" class="btn btn-small arrow-button" style="float: right; display: none;" data-original-title="Edit the day after">→</button>
+
+  <%= content_tag :span, @log.logged_date.to_date, :id => "log-date"  %>
+  <a id="log-date-button" class="tooltipable" href="javascript:void(0);" style="margin-left: 10px;" data-toggle="modal" data-target="#log-date-picker" data-original-title="Change the date"><%= image_tag("calendar.png") %></a>
+    
+</h1>
+</div>
+
+    
+      
+
+
+        <!--[if lt IE 7]>
+    <script type="text/javascript" 
+   src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+    <script>
+     // The conditional ensures that this code will only execute in IE,
+     // Therefore we can use the IE-specific attachEvent without worry
+     window.attachEvent("onload", function() {
+       CFInstall.check({
+         mode: "overlay"
+       });
+     });
+    </script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <div class="alert alert-warning">
+    <span class="icon-reminder"></span>
+      Our site works best in <a href="http://browsehappy.com/">modern browsers</a>.
+      We recommend upgrading or installing the
+      <a href="http://www.google.com/chromeframe">Google Chrome Frame</a> plugin for the best experience.
+    </div>
+    <![endif]-->
+
+    
+<%= form_for @log, html: {class: 'form-horizontal', id: 'log-form'} do |f| %>
+  <%= f.hidden_field :logged_date %> 
+  <div class="alert alert-info alert-block help-message">
+   <p><b>Welcome!</b> It looks like this is your first time logging, so we'll walk you through it.
+   If you want to bring back this help in the future, click the "?" button next to each section. Oh,
+   and if you ever have feedback about logging or anything else, click the big feedback button in the bottom right.
+   </p>
+   <p>
+   Ready? Let's go!
+   </p>
+  </div>
+
+  <input type="hidden" value="10/14/2013" name="date" readonly=""> 
+
+  <section id="log-measurements">
+    <div class="page-header">
+      <h3>Measurements
+       <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+       <button type="button" class="btn btn-small help-button">?</button>
+      </h3>
+
+    </div>
+
+    <div>
+    <div class="alert alert-info alert-block help-message">
+  <p>
+  We recommend taking your measurements at the same time each day (like before breakfast)
+  so that it's not  affected by what you've eaten that day.
+  Since measurements still fluctuate from water weight, we'll 
+  calculate a "moving average" and display that in your stats.
+  If you don't want to log your measurements on a particular day,
+  just leave this blank.
+  </p>
+</div>
+    
+<div id="log-measurements-fields">
+ <!--  -->
+
+<div id="log-measurement-weight" class="log-measurement control-group" style="display: block;">
+    <label for="measurement-weight">Weight:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-weight" name="measurement-weight" data-measurement="weight" data-propkey="measurementsById.weight.value"><span class="add-on">lbs</span>
+        <input type="hidden" name="weight_units" value="lbs" data-propkey="measurementsById.weight.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-bodyfat" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-bodyfat">Body Fat:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-bodyfat" name="measurement-bodyfat" data-measurement="bodyfat" data-propkey="measurementsById.bodyfat.value"><span class="add-on">%</span>
+        <input type="hidden" name="bodyfat_units" value="%" data-propkey="measurementsById.bodyfat.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-bodywater" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-bodywater">Body Water:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-bodywater" name="measurement-bodywater" data-measurement="bodywater" data-propkey="measurementsById.bodywater.value"><span class="add-on">%</span>
+        <input type="hidden" name="bodywater_units" value="%" data-propkey="measurementsById.bodywater.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-neck" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-neck">Neck:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-neck" name="measurement-neck" data-measurement="neck" data-propkey="measurementsById.neck.value"><span class="add-on">in</span>
+        <input type="hidden" name="neck_units" value="in" data-propkey="measurementsById.neck.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-bicep" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-bicep">Bicep:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-bicep" name="measurement-bicep" data-measurement="bicep" data-propkey="measurementsById.bicep.value"><span class="add-on">in</span>
+        <input type="hidden" name="bicep_units" value="in" data-propkey="measurementsById.bicep.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-forearm" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-forearm">Forearm:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-forearm" name="measurement-forearm" data-measurement="forearm" data-propkey="measurementsById.forearm.value"><span class="add-on">in</span>
+        <input type="hidden" name="forearm_units" value="in" data-propkey="measurementsById.forearm.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-chest" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-chest">Chest:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-chest" name="measurement-chest" data-measurement="chest" data-propkey="measurementsById.chest.value"><span class="add-on">in</span>
+        <input type="hidden" name="chest_units" value="in" data-propkey="measurementsById.chest.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-waist" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-waist">Waist:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-waist" name="measurement-waist" data-measurement="waist" data-propkey="measurementsById.waist.value"><span class="add-on">in</span>
+        <input type="hidden" name="waist_units" value="in" data-propkey="measurementsById.waist.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-hips" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-hips">Hips:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-hips" name="measurement-hips" data-measurement="hips" data-propkey="measurementsById.hips.value"><span class="add-on">in</span>
+        <input type="hidden" name="hips_units" value="in" data-propkey="measurementsById.hips.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-thigh" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-thigh">Thigh:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-thigh" name="measurement-thigh" data-measurement="thigh" data-propkey="measurementsById.thigh.value"><span class="add-on">in</span>
+        <input type="hidden" name="thigh_units" value="in" data-propkey="measurementsById.thigh.units">
+      </div>
+    </div>
+</div>
+
+<div id="log-measurement-calf" class="log-measurement control-group" style="display: none;">
+    <label for="measurement-calf">Calf:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-calf" name="measurement-calf" data-measurement="calf" data-propkey="measurementsById.calf.value"><span class="add-on">in</span>
+        <input type="hidden" name="calf_units" value="in" data-propkey="measurementsById.calf.units">
+      </div>
+    </div>
+</div>
+
+<!--  -->
+</div>
+
+<div id="log-measurements-show-button" class="form-horizontal-indent" style="display: block;"> 
+  <a href="javascript:void(0);">(Show other measurements)</a><p></p>
+</div>
+
+<div id="log-measurements-hide-button" class="form-horizontal-indent" style="display: none;"> 
+  <a href="javascript:void(0);">(Hide empty measurements)</a><p></p>
+</div>
+
+ <!--  -->
+{{#each measurements}}
+<div id="log-measurement-{{id}}" class="log-measurement control-group" style="display:none">
+    <label for="measurement-{{id}}">{{label}}:&nbsp;</label>
+    <div class="controls">
+      <div class="input-append">
+        <input class="log-measurement-input" type="number" step="0.01" id="measurement-{{id}}" name="measurement-{{id}}" data-measurement="{{id}}" data-propkey="measurementsById.{{id}}.value"><span class="add-on">{{units}}</span>
+        <input type="hidden" name="{{id}}_units" value="{{units}}" data-propkey="measurementsById.{{id}}.units">
+      </div>
+    </div>
+</div>
+{{/each}}
+<!--  -->
+</script>
+
+    <div id="log-period" style="display:none; margin-top: 10px;">
+
+    <div class="alert alert-info alert-block help-message">
+    <p>For women, your weight and other measurements may fluctuate
+    depending on the the time of the month, so you can also
+    record that here.
+    </p>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <label style="text-align:left" class="checkbox">
+          <input type="checkbox" name="period" id="period" data-propkey="period">
+          <span class="icon-female" style="vertical-align:top"></span>
+          <span>It's that time.</span>
+        </label>
+      </div>
+    </div>
+
+</div>
+    </div>
+  </section>
+
+  <section id="log-mealfoods">
+
+    <div class="page-header">
+      <h3>Meals
+      <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+      <button type="button" class="btn btn-small help-button">?</button>
+      </h3>
+    </div>
+    
+    <div>
+
+      <div class="alert alert-info alert-block help-message">
+       <p>You can either log your meals using free-form text (the default) or you
+       can log the details for each meal separately. 
+       Some people find it easier just to write a paragraph or list of their meals,
+       but others like the structure of meal-by-meal logging.
+       </p>
+       <p>
+       To change modes, just click the right-hand link. You can change the mode
+       each day, so don't worry about being stuck with one or the other.
+       </p>
+      </div>
+
+      <div id="log-meals" style="display: block;">
+        <p style="float:right"><a id="log-foods-switch" href="javascript:void(0);">(Switch to free-text logging)</a></p>
+        <div style="clear:right"></div>
+
+        <div id="log-meals-list">
+           <!--  -->
+
+          <%= f.fields_for :meals do |builder| %>
+            <%= render "meal_fields", :f => builder %>
+          <% end %>  
+          
+          <!--  -->
+       </div>
+
+      <button id="log-meal-button" data-association="meals" class="btn form-horizontal-indent" type="button">+ Add meal</button>
+      <%= new_fields_template f, :meals %>
+
+
+
+      <div id="log-meal-remove-popup" class="modal hide">
+        <input type="hidden" id="remove_hidden_id" />
+        <div class="modal-header">
+          <a href="#" class="close" data-dismiss="modal">×</a>
+          <h3>Remove meal</h3>
+        </div>
+        <div class="modal-body" style="text-align: center;">
+          <p>You sure?</p>
+          <input type="hidden" id="log-meal-remove-meal-id" value="">
+          <button id="log-meal-remove-take" class="btn btn-primary" type="button" style="margin-bottom:15px;">Yep, remove it.</button>
+          <br>
+          <button class="close-button btn" type="button" style="" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+      </div>
+      
+      <div id="log-foods" style="display: none;">
+  <span style="float:right"><a id="log-meals-switch" href="javascript:void(0);">(Switch to meal-by-meal logging)</a></span>
+
+  <div class="control-group" style="margin-bottom:5px; clear:right;">
+   <label>Describe your meals:</label>
+   <div class="controls">
+    <textarea id="log-foods-field" name="foods" class="span7" rows="4" data-propkey="foods"></textarea>
+   </div>
+  </div>
+   
+   <div class="control-group">
+     <div class="controls">
+       <button id="log-foods-photo-button" class="btn" type="button" data-toggle="modal" data-target="#log-foods-photo-picker">
+         <span class="icon-camera" style="vertical-align: bottom; margin-right: 3px;"></span>Add photo
+       </button>
+       <div id="log-photos" style="display:none;">
+       </div>
+       
+       <script id="log-photo-tmpl" type="text/html">
+         <div class="log-photo" id="log-photo-{{id}}">
+          <img src="{{thumbnail}}"></a>
+          <button style="top: -35px; position: relative;" class="btn btn-small log-photo-remove-button" type="button" data-id="{{id}}" data-startmsg="Remove" data-loadingmsg="Removing..." data-successmsg="Removed!">Remove</button>
+         </div>
+        </script>
+        
+    </div>
+  </div>
+
+</div>
+    </div>
+
+  </section>
+
+  <section id="log-foodgoals">
+
+
+    <div class="page-header">
+      <h3>Food Goals
+       <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+       <button type="button" class="btn btn-small help-button">?</button>
+      </h3>
+    </div>
+    
+    <div>
+
+    <div class="alert alert-info alert-block help-message">
+   <p>This is where you evaluate how well you did with your goals each day- 
+   typically you'd fill this out at the end of the day.
+   </p>
+   <p>
+   For each of your goals, grab the slider and drag it to indicate approximately
+   how much you ate of a food type or how much you did an activity.
+   It will change color from green (good) to red (not so good), and 
+   we use the same coloring on your stats and stream, so you'll get used to it.
+   It's up to you how far you drag the slider - it's more important to reflect and be aware
+   on how you're doing with your goals than to be exact about it. Don't stress
+   about measuring everything to a tee. 
+   </p>
+   <p>If you're not sure what counts as a particular food type, click the "?" button to the right of the slider.
+   </p>
+</div>
+    
+<div id="log-habits-negative" class="log-habits-type" style="">
+  <p>The bad stuff...</p>
+  <div class="log-habits" style="width:100%; margin-top: 20px;">
+ <!--  -->
+  
+  <div class="log-habit">
+    <button type="button" class="btn btn-small help-button" data-toggle="modal" data-target="#sugar-help">?</button>
+    <div class="log-habit-slider form-horizontal-indent">
+      <input type="text" name="type-sugar" data-label="Added Sugars" data-type="negative" data-propkey="habitsById.sugar.value" style="display: none;"><div class="colorslider-slider" id="colorslider-type-sugar" style="height: 15px; width: 520px;"><div class="colorslider-label" style="float: left; padding-left: 3px;">none</div><div class="colorslider-label" style="float: right; padding-right: 3px;">lots</div><div class="colorslider-knob-wrapper" style="left: 222.5px;"><div class="colorslider-knob" style="padding-top: 5px; padding-bottom: 5px; background-color: rgb(187, 187, 187);">Added Sugars</div></div></div>
+    </div>
+    
+    <div class="modal hide" id="sugar-help">
+      <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+        <h3>What counts as "Added Sugars"?</h3>
+      </div>
+      <div class="modal-body">
+        Besides the obvious sugar you might heap in your coffee, sugar is found in: sugary sauces (e.g. BBQ, hoisin, oyster sauce, sweet &amp; spicy sauce), beverages (e.g. fruit juices, non-diet sodas, cocktails, sweet wines), and of course,  candies and desserts. Many processed foods are made with High-Fructose Corn Syrup (a particularly bad form of sugar), so check ingredients of any processed foods you buy. (Or don't buy them at all!)
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary close-button" type="button" data-dismiss="modal">Got it, thanks.</button>
+      </div>
+    </div>
+    
+  </div>
+  
+<!--  -->
+
+ <!--  -->
+  
+  <div class="log-habit">
+    <button type="button" class="btn btn-small help-button" data-toggle="modal" data-target="#grains-help">?</button>
+    <div class="log-habit-slider form-horizontal-indent">
+      <input type="text" name="type-grains" data-label="Grains" data-type="negative" data-propkey="habitsById.grains.value" style="display: none;"><div class="colorslider-slider" id="colorslider-type-grains" style="height: 15px; width: 520px;"><div class="colorslider-label" style="float: left; padding-left: 3px;">none</div><div class="colorslider-label" style="float: right; padding-right: 3px;">lots</div><div class="colorslider-knob-wrapper" style="left: 222.5px;"><div class="colorslider-knob" style="padding-top: 10px; padding-bottom: 0px; background-color: rgb(187, 187, 187);">Grains</div></div></div>
+    </div>
+    
+    <div class="modal hide" id="grains-help">
+      <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+        <h3>What counts as "Grains"?</h3>
+      </div>
+      <div class="modal-body">
+        These take many forms: cereal, oatmeal, bread, tortillas, waffles, muffins, cupcakes, pita/naan/roti, pasta, bagels, rice, crackers, and anything made with flour (like thickened soups) or anything "breaded" (like chicken nuggets). Corn is also a grain, not a vegetable, and anything made of corn should be included here.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary close-button" type="button" data-dismiss="modal">Got it, thanks.</button>
+      </div>
+    </div>
+    
+  </div>
+  
+<!--  -->
+
+ <!--  -->
+  
+  <div class="log-habit">
+    <button type="button" class="btn btn-small help-button" data-toggle="modal" data-target="#processed-help">?</button>
+    <div class="log-habit-slider form-horizontal-indent">
+      <input type="text" name="type-processed" data-label="Processed Food" data-type="negative" data-propkey="habitsById.processed.value" style="display: none;"><div class="colorslider-slider" id="colorslider-type-processed" style="height: 15px; width: 520px;"><div class="colorslider-label" style="float: left; padding-left: 3px;">none</div><div class="colorslider-label" style="float: right; padding-right: 3px;">lots</div><div class="colorslider-knob-wrapper" style="left: 222.5px;"><div class="colorslider-knob" style="padding-top: 5px; padding-bottom: 5px; background-color: rgb(187, 187, 187);">Processed Food</div></div></div>
+    </div>
+    
+    <div class="modal hide" id="processed-help">
+      <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+        <h3>What counts as "Processed Food"?</h3>
+      </div>
+      <div class="modal-body">
+        Prepared foods like canned or frozen foods. To estimate how "processed" a food is, check the ingredients to see how many there are, and how many you don't recognize.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary close-button" type="button" data-dismiss="modal">Got it, thanks.</button>
+      </div>
+    </div>
+    
+  </div>
+  
+<!--  -->
+</div>
+</div>
+
+<div id="log-habits-positive" class="log-habits-type" style=""> 
+  <p>The good stuff!</p>
+  <div class="log-habits" style="width:100%;margin-top: 20px;">
+ <!--  -->
+  
+  <div class="log-habit">
+    <button type="button" class="btn btn-small help-button" data-toggle="modal" data-target="#veggies-help">?</button>
+    <div class="log-habit-slider form-horizontal-indent">
+      <input type="text" name="type-veggies" data-label="Veggies" data-type="positive" data-propkey="habitsById.veggies.value" style="display: none;"><div class="colorslider-slider" id="colorslider-type-veggies" style="height: 15px; width: 520px;"><div class="colorslider-label" style="float: left; padding-left: 3px;">none</div><div class="colorslider-label" style="float: right; padding-right: 3px;">lots</div><div class="colorslider-knob-wrapper" style="left: 222.5px;"><div class="colorslider-knob" style="padding-top: 10px; padding-bottom: 0px; background-color: rgb(187, 187, 187);">Veggies</div></div></div>
+    </div>
+    
+    <div class="modal hide" id="veggies-help">
+      <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+        <h3>What counts as "Veggies"?</h3>
+      </div>
+      <div class="modal-body">
+        The healthiest vegetables are grown organically and sourced locally. Generally, the best vegetables are the greenest, but each color corresponds to different vitamins, so you should aim for mostly green with a bit of rainbow. Most vegetables are most beneficial in their raw state, but some should be cooked for maximal benefit (e.g. carrots, broccoli, zucchini).
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary close-button" type="button" data-dismiss="modal">Got it, thanks.</button>
+      </div>
+    </div>
+    
+  </div>
+  
+<!--  -->
+
+ <!--  -->
+  
+  <div class="log-habit">
+    <button type="button" class="btn btn-small help-button" data-toggle="modal" data-target="#water-help">?</button>
+    <div class="log-habit-slider form-horizontal-indent">
+      <input type="text" name="type-water" data-label="Water" data-type="positive" data-propkey="habitsById.water.value" style="display: none;"><div class="colorslider-slider" id="colorslider-type-water" style="height: 15px; width: 520px;"><div class="colorslider-label" style="float: left; padding-left: 3px;">none</div><div class="colorslider-label" style="float: right; padding-right: 3px;">lots</div><div class="colorslider-knob-wrapper" style="left: 124.04px;"><div class="colorslider-knob" style="padding-top: 10px; padding-bottom: 0px; background-color: rgb(215, 117, 22);">Water</div></div></div>
+    </div>
+    
+    <div class="modal hide" id="water-help">
+      <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+        <h3>What counts as "Water"?</h3>
+      </div>
+      <div class="modal-body">
+        Water makes up 60% of your body weight and is used by all your body systems. Water flushes out toxins, carries nutrients to your cells, and keeps your respiratory tract moist. Drinking water can help in muscle recovery after workout and has been shown to increase weight loss.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary close-button" type="button" data-dismiss="modal">Got it, thanks.</button>
+      </div>
+    </div>
+    
+  </div>
+  
+<!--  -->
+
+ <!--  -->
+  
+  <div class="log-habit">
+    <button type="button" class="btn btn-small help-button" data-toggle="modal" data-target="#sleep-help">?</button>
+    <div class="log-habit-slider form-horizontal-indent">
+      <input type="text" name="type-sleep" data-label="Sleep" data-type="positive" data-propkey="habitsById.sleep.value" style="display: none;"><div class="colorslider-slider" id="colorslider-type-sleep" style="height: 15px; width: 520px;"><div class="colorslider-label" style="float: left; padding-left: 3px;">none</div><div class="colorslider-label" style="float: right; padding-right: 3px;">lots</div><div class="colorslider-knob-wrapper" style="left: 354.40000000000003px;"><div class="colorslider-knob" style="padding-top: 10px; padding-bottom: 0px; background-color: rgb(139, 213, 2);">Sleep</div></div></div>
+    </div>
+    
+    <div class="modal hide" id="sleep-help">
+      <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">×</a>
+        <h3>What counts as "Sleep"?</h3>
+      </div>
+      <div class="modal-body">
+        Most people need from 7-9 hours of quality sleep each night. If you're not sure how well you're sleeping, you can invest in something like the Jawbone UP or FitBit devices to measure your sleep activity.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary close-button" type="button" data-dismiss="modal">Got it, thanks.</button>
+      </div>
+    </div>
+    
+  </div>
+  
+<!--  -->
+</div>
+</div>
+
+    </div>
+
+  </section>
+  
+  <br><br>
+
+  <section id="log-foodbonuses">
+
+    <div class="page-header">
+      <h3>Food Feats
+        <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <button type="button" class="btn btn-small help-button">?</button>
+      </h3>
+    </div>
+
+    <div>
+      <div class="alert alert-info alert-block help-message">
+  <p>These are just some goals that we think will help everyone get healthier in a more sustainable, natural way. Check off the ones that apply to you each day.
+ </p>
+</div>
+
+<div id="log-foodgoals-bonuses" class="controls">
+  <!--  -->
+  
+  <label class="checkbox" for="bonus-homecooked" onclick="javascript:void(0);">
+    <input type="checkbox" name="bonus-homecooked" id="bonus-homecooked" value="homecooked" data-propkey="bonusesById.homecooked">
+    <span class="icon-homecooked"></span>
+    <span>I made my own meal(s).</span>
+  </label>
+  
+  <label class="checkbox" for="bonus-localfood" onclick="javascript:void(0);">
+    <input type="checkbox" name="bonus-localfood" id="bonus-localfood" value="localfood" data-propkey="bonusesById.localfood">
+    <span class="icon-localfood"></span>
+    <span>I ate locally grown food.</span>
+  </label>
+  
+  <label class="checkbox" for="bonus-organicveg" onclick="javascript:void(0);">
+    <input type="checkbox" name="bonus-organicveg" id="bonus-organicveg" value="organicveg" data-propkey="bonusesById.organicveg">
+    <span class="icon-organicveg"></span>
+    <span>I ate organic veggies.</span>
+  </label>
+  
+  <label class="checkbox" for="bonus-sustseafood" onclick="javascript:void(0);">
+    <input type="checkbox" name="bonus-sustseafood" id="bonus-sustseafood" value="sustseafood" data-propkey="bonusesById.sustseafood">
+    <span class="icon-sustseafood"></span>
+    <span>I ate sustainable seafood.</span>
+  </label>
+  
+  <label class="checkbox" for="bonus-grassfedmeat" onclick="javascript:void(0);">
+    <input type="checkbox" name="bonus-grassfedmeat" id="bonus-grassfedmeat" value="grassfedmeat" data-propkey="bonusesById.grassfedmeat">
+    <span class="icon-grassfedmeat"></span>
+    <span>I ate grass-fed meat.</span>
+  </label>
+  
+<!--  -->
+</div>
+
+    </div>
+
+  </section>
+
+  
+  <section id="log-tags">
+
+    <div class="page-header">
+      <h3>Tags
+        <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <button type="button" class="btn btn-small help-button">?</button>
+      </h3>
+    </div>
+
+    <div>
+      <style type="text/css">
+.icon-edit {
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.log-tag-field:hover .icon-edit {
+  visibility: hidden;
+}
+</style>
+
+<div class="alert alert-info alert-block help-message">
+<p>You can use tags to mark days you <em>walktowork</em>, <em>bike</em>, <em>skiplunch</em>, <em>party</em>, etc. - 
+anything that might affect your progress and that happens semi-regularly.
+</p>
+</div>
+
+<div id="log-tags-fields" class="controls">
+  <!--  -->
+  
+    <% current_user.tags.each do |atag| %>
+      <%# content_tag(:div, :id => "#{atag.name}template", :class => "log-tag-field") do %>
+        <% @atag = atag %>
+        <%= fields_for @atag, index: atag do |builder|%>
+          <%= render "tag_fields", object: @atag %>
+        <% end %>
+      <%# end %> 
+    <% end %>
+  
+    <% if false %> 
+    <%= f.fields_for :tags do |builder| %>
+      <%= render "tag_fields", :f => builder %>
+    <% end %>
+    <% end %>
+<!--  -->
+
+  <!--  -->
+  
+<!--  -->
+</div>
+
+
+<button id="log-tags-new-button" type="button" class="btn form-horizontal-indent"> + Add new tag</button>
+
+<%= new_tag_template current_user, :tags %>
+
+<div class="modal hide" id="log-tags-add" style="display: none;">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">×</a>
+    <h3>Add a tag</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <%= text_field_tag 'txt_tag' %>
+      <%= hidden_field_tag 'hidden_add_tag_button_id' %>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn close-button" type="button" data-dismiss="modal">Cancel</button>
+    <button id="log-tags-add-button" data-association="tags" class="btn btn-primary close-button" type="button" data-dismiss="modal">Add it</button>
+  </div>
+</div>
+<div id="log-tag-remove-popup" class="modal hide">
+  <input type="hidden" id="remove_hidden_tag_id" />
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">×</a>
+    <h3>Remove tag</h3>
+  </div>
+  <div class="modal-body" style="text-align: center;">
+    <p>You sure?</p>
+    <input type="hidden" id="log-tag-remove-tag-id" value="">
+    <button id="log-tag-remove-take" class="btn btn-primary" type="button" style="margin-bottom:15px;">Yep, remove it.</button>
+    <br>
+    <button class="close-button btn" type="button" style="" data-dismiss="modal">Cancel</button>
+  </div>
+</div>
+
+    </div>
+
+  </section>
+
+  <!-- Notes -->
+  <section id="log-notes">
+    
+    <div class="page-header">
+      <h3>Notes
+        <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <button type="button" class="btn btn-small help-button">?</button>
+      </h3>
+    </div>
+
+    <div>
+
+      <div class="alert alert-info alert-block help-message">
+    <p>You can use the notes to describe how you felt today (high energy? under the weather?),
+    rant about something that made your goals hard to meet today, describe your daily activities -
+    it's completely up to you.
+    </p>
+</div>
+
+<div class="control-group">
+ <div class="controls">
+  <textarea id="log-notes-field" name="notes" class="span7" rows="4" data-propkey="notes"></textarea>
+ </div>
+</div>
+    </div>
+
+  </section>
+
+  <div class="form-actions">
+    <button class="btn btn-primary save-button" type="submit" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!" data-redirect="/">Save</button>
+    <span id="log-sharing-warning" style="display:none; font-size: smaller;">(Note: Per your <a href="/settings/sharing"> settings</a>, this log will be world-visible.)</span>
+    <div class="error-message"></div>
+  </div>
+
+<% end %>
+
+<div id="log-foods-photo-picker" class="modal hide" style="display: none;">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">×</a>
+    <h3>Add a photo</h3>
+  </div>
+  <div class="modal-body">
+    <form id="log-foods-photo-form" class="form-horizontal">
+    <input type="hidden" name="date" readonly="" value="10/14/2013">
+    <div class="control-group">
+      <label>Upload a file:&nbsp;</label>
+      <div class="controls">
+        <input type="file" id="log-foods-photo-input" name="photo_file">
+      </div>
+    </div>
+    <div class="control-group" style="display:none">
+      <label>Or specify a URL:&nbsp;</label>
+      <div class="controls">
+        <input type="text" id="log-foods-photo-url" name="photo_url">
+      </div>
+    </div>
+  </form></div>
+  
+</div>
+
+
+<div id="log-date-picker" class="modal hide" style="height: 400px;">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">×</a>
+    <h3>Pick a different date</h3>
+  </div>
+  <div class="modal-body">
+    <input type="date" value="" style="margin-left: 20px; display: none;"><div class="datepicker" style="display: block;"><div class="nav"><div class="months"><span class="prev button">←</span><span class="name">October</span><span class="next button">→</span></div><div class="years"><span class="prev button">←</span><span class="name">2013</span><span class="next button">→</span></div></div><div class="calendar"><div class="dow">Mon</div><div class="dow">Tue</div><div class="dow">Wed</div><div class="dow">Thu</div><div class="dow">Fri</div><div class="dow">Sat</div><div class="dow">Sun</div><div class="days"><div date="09/30/2013" class="overlap">30</div><div date="10/01/2013">1</div><div date="10/02/2013">2</div><div date="10/03/2013">3</div><div date="10/04/2013">4</div><div date="10/05/2013">5</div><div date="10/06/2013">6</div><div date="10/07/2013">7</div><div date="10/08/2013">8</div><div date="10/09/2013">9</div><div date="10/10/2013">10</div><div date="10/11/2013">11</div><div date="10/12/2013">12</div><div date="10/13/2013">13</div><div date="10/14/2013" class="today selected">14</div><div date="10/15/2013">15</div><div date="10/16/2013">16</div><div date="10/17/2013">17</div><div date="10/18/2013">18</div><div date="10/19/2013">19</div><div date="10/20/2013">20</div><div date="10/21/2013">21</div><div date="10/22/2013">22</div><div date="10/23/2013">23</div><div date="10/24/2013">24</div><div date="10/25/2013">25</div><div date="10/26/2013">26</div><div date="10/27/2013">27</div><div date="10/28/2013">28</div><div date="10/29/2013">29</div><div date="10/30/2013">30</div><div date="10/31/2013">31</div><div date="11/01/2013" class="overlap">1</div><div date="11/02/2013" class="overlap">2</div><div date="11/03/2013" class="overlap">3</div></div></div></div> 
+  </div>
+</div>
+
+<div id="log-date-pickone" class="modal hide">
+  <div class="modal-header">
+    <h3>Hmm...</h3>
+  </div>
+  <div class="modal-body">
+    <p>Since it's early morning where you are, we're not sure whether you want to update your log for 
+    yesterday or today. Which one is it?</p>
+
+    <a id="log-date-pickone-yesterday" href="" class="btn btn-large btn-primary">Yesterday (<span></span>)</a>
+    <a id="log-date-pickone-today" href="" class="btn btn-large">Today (<span></span>)</a>
+  </div>
+</div>
+
+
+<div id="log-meal-photo-picker" class="modal hide" style="display: none;">
+  <div class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">×</a>
+    <h3>Add a photo</h3>
+  </div>
+  <form id="log-meal-photo-form">
+    <div class="modal-body">
+      <img id="log-meal-photo-preview" style="display: none; margin-bottom: 10px; max-height: 300px; max-width: 100%;">
+      <input type="hidden" id="log-meal-photo-meal-id" name="meal_id" value="1381803857377">
+      <div class="control-group">
+        <label>Upload a file:&nbsp;</label>
+        <div class="controls">
+          <input type="file" id="log-meal-photo-input" name="photo_file">
+        </div>
+      </div>
+      <div class="control-group" style="display:none">
+        <label>Or specify a URL:&nbsp;</label>
+        <div class="controls">
+          <input type="text" id="log-meal-photo-url" name="photo_url">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+  </div>
+
+
+<h1>Logs#new</h1>
+<p>Find me in app/views/logs/new.html.erb</p>

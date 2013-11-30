@@ -1,0 +1,16 @@
+
+<div class="log-meal controls" id="legmealcontrol" data-id="1381803857377">
+  
+  <div class="log-meal-side">
+    <%= f.select :eaten_at_time, series_of_times, {}, {:class => "log-meal-when span2"} %>
+    <div class="log-meal-remove-button">
+      <%= link_to_delete_fields "Remove", f %>
+    </div>
+  </div>
+
+  <button class="log-meal-photo-button btn btn-small" type="button" data-id="1381803857377" tabindex="-1" data-toggle="modal" data-target="#log-meal-photo-picker">
+    <%= image_tag("camerabutton.png") %>
+  </button>
+
+  <%= f.text_area :notes, class: "log-meal-what" %>
+</div>
