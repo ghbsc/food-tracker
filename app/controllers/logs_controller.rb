@@ -28,7 +28,8 @@ class LogsController < ApplicationController
     @log = Log.detail(current_user.id, logged_date)
 
     if @log.nil?
-      redirect_to new_log_path(logged_date: logged_date)
+      #redirect_to new_log_path(logged_date: logged_date)
+      redirect_to logs_new_path << "?logged_date=#{logged_date}"
     else
       @log
     end
@@ -64,7 +65,7 @@ class LogsController < ApplicationController
       render 'edit'
     end
 
-    #At last, delete the tag table 
+    #At last, delete the tag table, update only 
     if params[:user] && params[:user][:tags]
       params[:user][:tags].each do |key, value|
         Tag.find(value[:id].to_i).delete if value[:_destroy] == '1'
@@ -76,10 +77,6 @@ class LogsController < ApplicationController
   private
     def log_params
       params.require(:log).permit(:notes, :logged_date, meals_attributes: [:id, :eaten_at, :eaten_at_time, :notes, :_destroy])
-    end
-
-    def tag_params
-      params.require(:tag).permit(:name)
     end
 
     def set_meal_params

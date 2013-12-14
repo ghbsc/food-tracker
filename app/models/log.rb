@@ -11,7 +11,8 @@ class Log < ActiveRecord::Base
 #  end
 
   def self.detail(user_id, logged_date)
-    Log.where(user_id: user_id, logged_date: (logged_date)..(logged_date + 1.day)).first
+    Log.find_by logged_date: logged_date 
+    #Log.where(user_id: user_id, logged_date: (logged_date)..(logged_date + 1.day)).first
         #.joins(:meals)
 
       #.select("logs.*, meals.log_id, meals.notes, to_char(meals.eaten_at, 'FMHH:MIam') as eaten_at")

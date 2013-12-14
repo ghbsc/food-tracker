@@ -7,14 +7,18 @@
 
     
 <div class="page-header">
-<h1>
-  <button id="log-backwards-arrow" class="btn btn-small arrow-button" style="float:left" data-original-title="Edit the day before">←</button>
-  <button id="log-forwards-arrow" class="btn btn-small arrow-button" style="float: right; display: none;" data-original-title="Edit the day after">→</button>
+  <h1>
+    <%= link_to "←", { controller: "logs", action: "edit", logged_date: @log.logged_date.yesterday.strftime('%Y-%m-%d') }, id: 'log-backwards-arrow', class: 'btn btn-small arrow-button', style: 'float: left', data: { original_title: 'Edit the day before' }, rel: 'tooltip' %>
 
-  <%= content_tag :span, @log.logged_date.to_date, :id => "log-date"  %>
-  <a id="log-date-button" class="tooltipable" href="javascript:void(0);" style="margin-left: 10px;" data-toggle="modal" data-target="#log-date-picker" data-original-title="Change the date"><%= image_tag("calendar.png") %></a>
-    
-</h1>
+    <%= link_to_if(@log.logged_date != Date.today, "→", { controller: "logs", action: "edit", logged_date: @log.logged_date.tomorrow.strftime('%Y-%m-%d') }, id: 'log-forwards-arrow', class: 'btn btn-small arrow-button', style: 'float: right', data: { original_title: 'Edit the data after' }, rel: 'tooltip') %>
+
+    <%= content_tag :span, @log.logged_date.to_date, :id => "log-date"  %>
+
+    <%= link_to(id: 'log-date-button', style: 'margin-left: 10px;', rel: 'tooltip', href: 'javascript:void(0)', data: { original_title: 'Change the date' }) do %>
+      <%= image_tag("calendar.png") %>
+    <% end %>
+      
+  </h1>
 </div>
 
     
@@ -736,16 +740,6 @@ anything that might affect your progress and that happens semi-regularly.
   
 </div>
 
-
-<div id="log-date-picker" class="modal hide" style="height: 400px;">
-  <div class="modal-header">
-    <a href="#" class="close" data-dismiss="modal">×</a>
-    <h3>Pick a different date</h3>
-  </div>
-  <div class="modal-body">
-    <input type="date" value="" style="margin-left: 20px; display: none;"><div class="datepicker" style="display: block;"><div class="nav"><div class="months"><span class="prev button">←</span><span class="name">October</span><span class="next button">→</span></div><div class="years"><span class="prev button">←</span><span class="name">2013</span><span class="next button">→</span></div></div><div class="calendar"><div class="dow">Mon</div><div class="dow">Tue</div><div class="dow">Wed</div><div class="dow">Thu</div><div class="dow">Fri</div><div class="dow">Sat</div><div class="dow">Sun</div><div class="days"><div date="09/30/2013" class="overlap">30</div><div date="10/01/2013">1</div><div date="10/02/2013">2</div><div date="10/03/2013">3</div><div date="10/04/2013">4</div><div date="10/05/2013">5</div><div date="10/06/2013">6</div><div date="10/07/2013">7</div><div date="10/08/2013">8</div><div date="10/09/2013">9</div><div date="10/10/2013">10</div><div date="10/11/2013">11</div><div date="10/12/2013">12</div><div date="10/13/2013">13</div><div date="10/14/2013" class="today selected">14</div><div date="10/15/2013">15</div><div date="10/16/2013">16</div><div date="10/17/2013">17</div><div date="10/18/2013">18</div><div date="10/19/2013">19</div><div date="10/20/2013">20</div><div date="10/21/2013">21</div><div date="10/22/2013">22</div><div date="10/23/2013">23</div><div date="10/24/2013">24</div><div date="10/25/2013">25</div><div date="10/26/2013">26</div><div date="10/27/2013">27</div><div date="10/28/2013">28</div><div date="10/29/2013">29</div><div date="10/30/2013">30</div><div date="10/31/2013">31</div><div date="11/01/2013" class="overlap">1</div><div date="11/02/2013" class="overlap">2</div><div date="11/03/2013" class="overlap">3</div></div></div></div> 
-  </div>
-</div>
 
 <div id="log-date-pickone" class="modal hide">
   <div class="modal-header">

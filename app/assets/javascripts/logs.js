@@ -90,12 +90,33 @@ $template.children().children().children('#user_tags_new_tags_name').prop('value
 
    });
 
+  $('#log-date-picker .days div').click(function() {
+    var dt = new Date($(this)[0].getAttribute('date'));
+    
+    var parser = document.createElement('a');
+    parser.href = document.URL;
+    parser.pathname = parser.pathname.replace('new', 'edit');
+    var month = dt.getMonth() + 1;
+    parser.search = '?logged_date=' + dt.getFullYear() + '-' + month + '-' + dt.getDate(); 
+
+    window.location.href = parser.href; 
+  });
+
+  $('#log-date-button').datepicker().on('changeDate', function(e){
+    var parser = document.createElement('a');
+    parser.href = document.URL;
+    parser.pathname = parser.pathname.replace('new', 'edit');
+    parser.search = '?logged_date=' + e.format('yyyy-mm-dd');
+    
+    window.location.href = parser.href; 
+  });
 
   $("form:first").submit(function() {
     $('#meals_fields_template :input').prop("disabled", true);
     $('#tags_template :input').prop("disabled", true);
   });
 
+  $('[rel=tooltip]').tooltip(); 
 });
 
 

@@ -1,8 +1,12 @@
 FoodTracker::Application.routes.draw do
   #get "logs/new"
   #get "logs/edit"
+
+  get 'logs/new', to: 'logs#new' #, as: 'log' this is the name of the named route
+  get 'log/edit', to: 'logs#edit'
+
   resources :goals, only: [:new, :create, :edit, :update] 
-  resources :logs, only: [:new, :create, :update] 
+  resources :logs, only: [:create, :edit, :update] 
  
   get ':controller/:action/:id' 
   get "settings/goals"

@@ -6340,7 +6340,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
     border: 1px solid #ccc;
   };
 
-  .log-tag-field-label .remove_tag {
+  .remove_tag {
     font-size: 9px;
-  };
+  }
 }

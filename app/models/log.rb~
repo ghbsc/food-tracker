@@ -2,6 +2,8 @@ class Log < ActiveRecord::Base
   has_many :meals, dependent: :destroy 
   accepts_nested_attributes_for :meals, reject_if: proc { |attributes| attributes['notes'].blank? }, allow_destroy: true
 
+  has_and_belongs_to_many :tags
+  
   #scope :today_log, where(logged_date: Date.today)
 
 #  def self.detail(user_id, logged_date)
