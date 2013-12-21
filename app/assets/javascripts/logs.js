@@ -20,7 +20,7 @@ $(function() {
     var $template = $('#' + association + '_template');
     $template.children().children().children('.tag-neutral').html($('#txt_tag').val());
 
-$template.children().children().children('#user_tags_new_tags_name').prop('value', $('#txt_tag').val());
+    $template.children().children().children('#user_tags_new_tags_name').prop('value', $('#txt_tag').val());
 
     var template_html = $template.html();
     var regexp = new RegExp('new_' + association, 'g');
@@ -109,6 +109,80 @@ $template.children().children().children('#user_tags_new_tags_name').prop('value
     parser.search = '?logged_date=' + e.format('yyyy-mm-dd');
     
     window.location.href = parser.href; 
+  });
+
+  $('#tag-save-button').click(function() {
+    var str = '{';
+    str += '"log": {' ;
+    str += '"logged_date": "' + $('#log_logged_date').val() + '", ';
+
+    if($('.log-tag-field:not(:last)').children().children(':nth-child(1)').is(':checked'))
+    {
+      str += '"tag_ids": { ';
+
+      $('.log-tag-field:not(:last)').each(function(index, value) {
+        var tagCheckbox = $(this).children().children(':nth-child(1)'); 
+
+        if(tagCheckbox.is(':checked'))
+        {
+          var hashValue = tagCheckbox.prop('value');
+          var arr = tagCheckbox.prop('id').split('_');
+          var hashIndex = arr[arr.length - 1];
+
+          str += '"' + hashIndex + '": "' + hashValue + '",';   
+        }
+      });
+     
+      str = str.slice(0, -1); 
+      str += '}';
+    }
+    str += '}';  //end log
+
+    str += ', "user": { '; 
+    str += '"tags": { ';
+
+    $('.log-tag-field:not(:last)').each(function(index, value) {
+        var tagCheckbox = $(this).children().children(':nth-child(1)'); 
+        var arr = tagCheckbox.prop('id').split('_');
+        var hashIndex = arr[arr.length - 1];
+
+        var tagDestroy = $(this).children().children(':nth-child(3)'); 
+        var tagName = $(this).children().children(':nth-child(5)'); 
+        var tagId = $(this).children().children(':nth-child(6)'); 
+
+        str += '"';
+        str +=  hashIndex + '": { ';
+        str += '"_destroy": "' + tagDestroy.val() + '", ';
+
+        str += '"name": "' + tagName.val() + '", ';
+        str += '"id": "' + tagId.val() + '" }';
+        str += ',';
+    });
+
+    str = str.slice(0, -1); 
+    str += '}';
+    str += '}';
+
+    str += ',"_method": "put"';
+    str += '}'; //end root
+
+    $.ajax({
+      url: '/logs/' + $('#log_id').val(),
+      beforeSend: function( xhr ) {
+        $('#tag-save-button').html('Saving...');   
+      },
+      type: "POST",
+      data: $.parseJSON(str),
+      dataType: "script"
+    });
+      /*.done(function(data) {
+        $('#tag-save-button').text('Saved!');
+        alert('done');
+      });*/    
+    
+    //$.post('/logs/' + $('#log_id').val(), $.parseJSON(str));
+      //.done(function( data ) {
+        //alert( "Data Loaded: " + data );});
   });
 
   $("form:first").submit(function() {

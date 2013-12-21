@@ -14,7 +14,7 @@
 
     <%= content_tag :span, @log.logged_date.to_date, :id => "log-date"  %>
 
-    <%= link_to(id: 'log-date-button', style: 'margin-left: 10px;', rel: 'tooltip', href: 'javascript:void(0)', data: { provide: 'datepicker', original_title: 'Change the date' }) do %>
+    <%= link_to(id: 'log-date-button', style: 'margin-left: 10px;', rel: 'tooltip', href: 'javascript:void(0)', data: { original_title: 'Change the date' }) do %>
       <%= image_tag("calendar.png") %>
     <% end %>
       
@@ -629,9 +629,9 @@ anything that might affect your progress and that happens semi-regularly.
     <% end %>
   
     <% if false %> 
-    <%= f.fields_for :tags do |builder| %>
-      <%= render "tag_fields", :f => builder %>
-    <% end %>
+      <%= f.fields_for :tags do |builder| %>
+        <%= render "tag_fields", :f => builder %>
+      <% end %>
     <% end %>
 <!--  -->
 
@@ -685,7 +685,9 @@ anything that might affect your progress and that happens semi-regularly.
     
     <div class="page-header">
       <h3>Notes
-        <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='tag-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
+        <%# link_to "Save", href:'javascript:void(0)', {}, id: 'tag-save-button', class: 'btn btn-small btn-primary mini-save-button' %>
+    <!--<button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>-->
         <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>

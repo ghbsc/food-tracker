@@ -1,0 +1,106 @@
+{"utf8"=>"✓", "_method"=>"patch", "authenticity_token"=>"E1xNzl4ILA85wFoxfzlU/Brbb2ByjmZw1f59+ALiYmg=", "log"=>{"logged_date"=>"2013-11-08 00:00:00", "meals_attributes"=>{"0"=>{"eaten_at_time"=>"10:00am", "_destroy"=>"false", "notes"=>"second link", "id"=>"2", "eaten_at"=>Fri, 08 Nov 2013 10:00:00 +0000}}, "tag_ids"=>{"6"=>"6", "1385840302288"=>"0"}},
+
+"user"=>{"tags"=>{"6"=>{"_destroy"=>"false", "name"=>"noodle", "id"=>"6"}, "8"=>{"_destroy"=>"false", "name"=>"rice", "id"=>"8"}, "9"=>{"_destroy"=>"false", "name"=>"juice", "id"=>"9"}, "10"=>{"_destroy"=>"false", "name"=>"rasin", "id"=>"10"}, "1385840288515"=>{"_destroy"=>"false", "name"=>"corn", "id"=>"0"}, "1385840302288"=>{"_destroy"=>"false", "name"=>"soy", "id"=>"0"}}}, "txt_tag"=>"soy", "hidden_add_tag_button_id"=>"log-tags-new-button", "notes"=>"", "action"=>"update", "controller"=>"logs", "id"=>"1"}
+
+{
+    "log": {
+        "logged_date": "2013-11-08 00:00:00",
+        "tag_ids": [
+            {
+                "6": "6"
+            },
+            {
+                "8": "8"
+            }
+        ]
+    },
+    "user": {
+        "tags": [
+            {
+                "6": {
+                    "_destroy": "false",
+                    "_name": "noodle",
+                    "_id": "6"
+                }
+            },
+            {
+                "8": {
+                    "_destroy": "false",
+                    "_name": "rice",
+                    "_id": "8"
+                }
+            },
+            {
+                "9": {
+                    "_destroy": "false",
+                    "_name": "juice",
+                    "_id": "9"
+                }
+            },
+            {
+                "10": {
+                    "_destroy": "false",
+                    "_name": "rasin",
+                    "_id": "10"
+                }
+            },
+            {
+                "11": {
+                    "_destroy": "false",
+                    "_name": "corn",
+                    "_id": "11"
+                }
+            },
+            {
+                "12": {
+                    "_destroy": "false",
+                    "_name": "soy",
+                    "_id": "12"
+                }
+            },
+            {
+                "13": {
+                    "_destroy": "false",
+                    "_name": "beef",
+                    "_id": "13"
+                }
+            },
+            {
+                "14": {
+                    "_destroy": "false",
+                    "_name": "pork",
+                    "_id": "14"
+                }
+            }
+        ]
+    }
+}
+
+
+
+{
+    "log": {
+        "logged_date": "2013-11-08 00:00:00",
+        "tag_ids": [
+            {
+                "6": "6"
+            },
+            {
+                "8": "8"
+            },
+            {
+                "9": "9"
+            }
+        ]
+    },
+    "user": {
+        "tags": [
+            {
+                "6": {}
+            },
+            {
+                "8": {}
+            }
+        ]
+    }
+}

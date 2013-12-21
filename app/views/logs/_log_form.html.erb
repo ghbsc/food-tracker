@@ -50,7 +50,8 @@
 
     
 <%= form_for @log, html: {class: 'form-horizontal', id: 'log-form'} do |f| %>
-  <%= f.hidden_field :logged_date %> 
+  <%= f.hidden_field :logged_date %>
+  <%= f.hidden_field :id %>
   <div class="alert alert-info alert-block help-message">
    <p><b>Welcome!</b> It looks like this is your first time logging, so we'll walk you through it.
    If you want to bring back this help in the future, click the "?" button next to each section. Oh,
@@ -629,9 +630,9 @@ anything that might affect your progress and that happens semi-regularly.
     <% end %>
   
     <% if false %> 
-    <%= f.fields_for :tags do |builder| %>
-      <%= render "tag_fields", :f => builder %>
-    <% end %>
+      <%= f.fields_for :tags do |builder| %>
+        <%= render "tag_fields", :f => builder %>
+      <% end %>
     <% end %>
 <!--  -->
 
@@ -685,7 +686,9 @@ anything that might affect your progress and that happens semi-regularly.
     
     <div class="page-header">
       <h3>Notes
-        <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='tag-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
+        <%# link_to "Save", href:'javascript:void(0)', {}, id: 'tag-save-button', class: 'btn btn-small btn-primary mini-save-button' %>
+    <!--<button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>-->
         <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>

@@ -1,5 +1,6 @@
 
 <%= content_tag(:div, :id => "log-tag#{@atag.name}", :class => "log-tag-field") do %> 
+  <label onclick="javascript:void(0);" class="log-tag-field-label checkbox" style="display:inline-block;">
     <% if false %> 
     <%= f.check_box :id %>
     <%= content_tag :span, :name, :class => "log-tag tag-neutral" %>
@@ -8,9 +9,10 @@
 
     <%= check_box_tag (@atag.new_record? && "log[tag_ids][new_tags]") || "log[tag_ids][#{@atag.id}]", @atag.id ||= 0, @log.tags.include?(@atag) %>
     <%= content_tag :span, @atag.name, :class => "log-tag tag-neutral" %>
-    <!--<div class="log-meal-remove-button">-->
       <%= link_to_delete_tag "Remove", (@atag.new_record? && 'new_tags') || @atag.id %>
-    <!--</div>-->
     <%= hidden_field_tag (@atag.new_record? && "user[tags][new_tags][name]") || "user[tags][#{@atag.id}][name]", @atag.name %>
     <%= hidden_field_tag (@atag.new_record? && "user[tags][new_tags][id]") || "user[tags][#{@atag.id}][id]", @atag.id ||= 0 %>
+  </label>
+    <!--<div class="log-meal-remove-button">-->
+    <!--</div>-->
 <% end %>

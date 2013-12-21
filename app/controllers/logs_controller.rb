@@ -57,20 +57,37 @@ class LogsController < ApplicationController
 
     @log.tag_ids = params[:log][:tag_ids].values if params[:log] && params[:log][:tag_ids]
 
+    respond_to do |format|
+      if @log.update_attributes(log_params)
+        
+        #At last, delete the tag table, update only 
+        if params[:user] && params[:user][:tags]
+          params[:user][:tags].each do |key, value|
+            Tag.find(value[:id].to_i).delete if value[:_destroy] == '1'
+          end
+        end 
+        
+        format.js   {}
+        format.html { redirect_to edit_log_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d')), notice: 'Save successful'}
+        format.json { render json: @log, status: :created, location: @log }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @log.errors, status: :unprocessable_entity }
+      end
+    end   
+
+if false 
     if @log.update_attributes(log_params)
+      
       #redirect_to @log, :notice  => "Successfully updated survey."
+      
+      
       flash[:success] = "Save successful"
       redirect_to edit_log_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d'))
     else
       render 'edit'
     end
-
-    #At last, delete the tag table, update only 
-    if params[:user] && params[:user][:tags]
-      params[:user][:tags].each do |key, value|
-        Tag.find(value[:id].to_i).delete if value[:_destroy] == '1'
-      end
-    end 
+end
 
   end
   
