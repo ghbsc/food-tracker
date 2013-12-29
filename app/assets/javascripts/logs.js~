@@ -115,7 +115,8 @@ $(function() {
     var str = '{';
     str += '"log": {' ;
     str += '"logged_date": "' + $('#log_logged_date').val() + '", ';
-
+    str += '"section": "tag", ';
+    
     if($('.log-tag-field:not(:last)').children().children(':nth-child(1)').is(':checked'))
     {
       str += '"tag_ids": { ';
@@ -163,13 +164,15 @@ $(function() {
     str += '}';
     str += '}';
 
-    str += ',"_method": "put"';
+    if(is_upate()) 
+      str += ',"_method": "put"';
+    
     str += '}'; //end root
 
     $.ajax({
-      url: '/logs/' + $('#log_id').val(),
+      url: get_url(),
       beforeSend: function( xhr ) {
-      
+        $('#tag-save-button').html('Saving...');   
       },
       type: "POST",
       data: $.parseJSON(str),
@@ -185,12 +188,45 @@ $(function() {
         //alert( "Data Loaded: " + data );});
   });
 
+  $('#meal-save-button').click(function() {
+    var logged_date = $('#log_logged_date').val();
+
+    $('.log-meal').wrapAll('<form accept-charset="UTF-8" action="' + get_url() + '" data-remote="true" id="meal_form" method="post"></form>');
+    if(is_upate()) 
+      $('#meal_form').append('<input name="_method" type="hidden" value="patch" />');
+    
+    $('#meal_form').append('<input name="log[logged_date]" type="hidden" value="' + logged_date + '" />');
+    $('#meal_form').append('<input name="log[section]" type="hidden" value="meal" />');
+    
+    $('#meal-save-button').html('Saving...');   
+    $('#meal_form').submit(); 
+  });
+
+  function get_url()
+  {
+    var url; 
+    if($('#log_id').val() == '')
+      url = '/logs';
+    else
+      url =  '/logs/' + $('#log_id').val();
+
+    return url;
+  }
+
+  function is_upate()
+  {
+    if($('#log_id').val() == '')
+      return false; 
+    else
+      return true; 
+  }
+
   $("form:first").submit(function() {
     $('#meals_fields_template :input').prop("disabled", true);
     $('#tags_template :input').prop("disabled", true);
   });
 
-  $('[rel=tooltip]').tooltip(); 
-});
+  $('[rel=tooltip]').tooltip();
 
+});
 

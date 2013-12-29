@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-migrate-1.2.1
-//= require turbolinks
 //= require bootstrap
 //= require lib
 //= require_tree .

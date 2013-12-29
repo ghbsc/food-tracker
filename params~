@@ -5,77 +5,62 @@
 {
     "log": {
         "logged_date": "2013-11-08 00:00:00",
-        "tag_ids": [
-            {
-                "6": "6"
-            },
-            {
-                "8": "8"
-            }
-        ]
+        "tag_ids": {
+            "6": "6",
+            "1387429658456": "0"
+        }
     },
     "user": {
-        "tags": [
-            {
-                "6": {
-                    "_destroy": "false",
-                    "_name": "noodle",
-                    "_id": "6"
-                }
+        "tags": {
+            "6": {
+                "_destroy": "false",
+                "_name": "noodle",
+                "_id": "6"
             },
-            {
-                "8": {
-                    "_destroy": "false",
-                    "_name": "rice",
-                    "_id": "8"
-                }
+            "8": {
+                "_destroy": "false",
+                "_name": "rice",
+                "_id": "8"
             },
-            {
-                "9": {
-                    "_destroy": "false",
-                    "_name": "juice",
-                    "_id": "9"
-                }
+            "9": {
+                "_destroy": "false",
+                "_name": "juice",
+                "_id": "9"
             },
-            {
-                "10": {
-                    "_destroy": "false",
-                    "_name": "rasin",
-                    "_id": "10"
-                }
+            "10": {
+                "_destroy": "false",
+                "_name": "rasin",
+                "_id": "10"
             },
-            {
-                "11": {
-                    "_destroy": "false",
-                    "_name": "corn",
-                    "_id": "11"
-                }
+            "11": {
+                "_destroy": "false",
+                "_name": "corn",
+                "_id": "11"
             },
-            {
-                "12": {
-                    "_destroy": "false",
-                    "_name": "soy",
-                    "_id": "12"
-                }
+            "12": {
+                "_destroy": "false",
+                "_name": "soy",
+                "_id": "12"
             },
-            {
-                "13": {
-                    "_destroy": "false",
-                    "_name": "beef",
-                    "_id": "13"
-                }
+            "13": {
+                "_destroy": "false",
+                "_name": "beef",
+                "_id": "13"
             },
-            {
-                "14": {
-                    "_destroy": "false",
-                    "_name": "pork",
-                    "_id": "14"
-                }
+            "14": {
+                "_destroy": "false",
+                "_name": "pork",
+                "_id": "14"
+            },
+            "1387429658456": {
+                "_destroy": "false",
+                "_name": "new",
+                "_id": "0"
             }
-        ]
-    }
+        }
+    },
+    "_method": "put"
 }
-
 
 
 {

@@ -6,9 +6,9 @@
      <a href="/home">
      Home
      </a></li>
-    <li><a href="/log">
-     Log
-     </a></li>
+    <li>
+     <%= link_to "Log", logs_edit_path << "?logged_date=#{logged_date}" %>
+    </li>
     <li><a href="/stats">
      Stats
      </a></li>
@@ -41,13 +41,3 @@
   </ul>
 <% end %>
 
-<% if params[:controller] == 'goals' %>
-  <ul class="nav nav-tabs" id="content-nav">
-    <li><a href="/settings/profile">Profile</a>
-    <li><a href="/settings/goals">Goals</a> 
-    <li><a href="/settings/reminders">Reminders</a>
-    <li><a href="/settings/buddies">Buddies</a>
-    <li><a href="/settings/sharing">Sharing</a>
-    <li><a href="/settings/data">Data Import</a>
-  </ul>
-<% end %>

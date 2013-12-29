@@ -16,8 +16,15 @@ class LogsController < ApplicationController
 
     respond_to do |format|
       if @log.save
-        flash[:success] = "Save successful"
-        format.js   {}
+        @log_section = params[:log][:section]
+        #Create a new log without a full post back. Subsequent requests are updates 
+        @action = 'create'
+        
+        if !request.xhr?
+          flash[:success] = "Save successful"
+        end
+
+        format.js   { render file: 'app/views/logs/create_update.js.erb' }
         format.html { redirect_to edit_log_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d')) }
         format.json { render json: @log, status: :created, location: @log }
         
@@ -58,6 +65,7 @@ class LogsController < ApplicationController
 
     respond_to do |format|
       if @log.update_attributes(log_params)
+        @log_section = params[:log][:section]
         
         #At last, delete the tag table, update only 
         if params[:user] && params[:user][:tags]
@@ -66,8 +74,11 @@ class LogsController < ApplicationController
           end
         end 
        
-        flash[:success] = "Save successful"
-        format.js   {}
+        if !request.xhr?
+          flash[:success] = "Save successful"
+        end 
+        
+        format.js   { render file: 'app/views/logs/create_update.js.erb' }
         format.html { redirect_to edit_log_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d')) }
         format.json { render json: @log, status: :created, location: @log }
       else

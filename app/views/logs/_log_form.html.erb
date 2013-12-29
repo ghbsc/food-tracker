@@ -10,7 +10,9 @@
   <h1>
     <%= link_to "←", { controller: "logs", action: "edit", logged_date: @log.logged_date.yesterday.strftime('%Y-%m-%d') }, id: 'log-backwards-arrow', class: 'btn btn-small arrow-button', style: 'float: left', data: { original_title: 'Edit the day before' }, rel: 'tooltip' %>
 
-    <%= link_to_if(@log.logged_date != Date.today, "→", { controller: "logs", action: "edit", logged_date: @log.logged_date.tomorrow.strftime('%Y-%m-%d') }, id: 'log-forwards-arrow', class: 'btn btn-small arrow-button', style: 'float: right', data: { original_title: 'Edit the data after' }, rel: 'tooltip') %>
+    <% if @log.logged_date < Date.today %>
+      <%= link_to" →", { controller: "logs", action: "edit", logged_date: @log.logged_date.tomorrow.strftime('%Y-%m-%d') }, id: 'log-forwards-arrow', class: 'btn btn-small arrow-button', style: 'float: right', data: { original_title: 'Edit the data after' }, rel: 'tooltip' %>
+    <% end %>
 
     <%= content_tag :span, @log.logged_date.to_date, :id => "log-date"  %>
 
@@ -344,7 +346,7 @@
 
     <div class="page-header">
       <h3>Food Goals
-       <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='meal-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
        <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>

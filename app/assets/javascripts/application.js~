@@ -16,5 +16,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require lib
-//= require web
 //= require_tree .

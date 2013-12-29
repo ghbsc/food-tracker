@@ -10,7 +10,10 @@
   <h1>
     <%= link_to "←", { controller: "logs", action: "edit", logged_date: @log.logged_date.yesterday.strftime('%Y-%m-%d') }, id: 'log-backwards-arrow', class: 'btn btn-small arrow-button', style: 'float: left', data: { original_title: 'Edit the day before' }, rel: 'tooltip' %>
 
-    <%= link_to_if(@log.logged_date != Date.today, "→", { controller: "logs", action: "edit", logged_date: @log.logged_date.tomorrow.strftime('%Y-%m-%d') }, id: 'log-forwards-arrow', class: 'btn btn-small arrow-button', style: 'float: right', data: { original_title: 'Edit the data after' }, rel: 'tooltip') %>
+    <% if @log.logged_date < Date.today %>
+
+    <% end %>
+    <%= link_to" →", { controller: "logs", action: "edit", logged_date: @log.logged_date.tomorrow.strftime('%Y-%m-%d') }, id: 'log-forwards-arrow', class: 'btn btn-small arrow-button', style: 'float: right', data: { original_title: 'Edit the data after' }, rel: 'tooltip' %>
 
     <%= content_tag :span, @log.logged_date.to_date, :id => "log-date"  %>
 
@@ -50,7 +53,8 @@
 
     
 <%= form_for @log, html: {class: 'form-horizontal', id: 'log-form'} do |f| %>
-  <%= f.hidden_field :logged_date %> 
+  <%= f.hidden_field :logged_date %>
+  <%= f.hidden_field :id %>
   <div class="alert alert-info alert-block help-message">
    <p><b>Welcome!</b> It looks like this is your first time logging, so we'll walk you through it.
    If you want to bring back this help in the future, click the "?" button next to each section. Oh,
@@ -343,7 +347,7 @@
 
     <div class="page-header">
       <h3>Food Goals
-       <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='meal-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
        <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>

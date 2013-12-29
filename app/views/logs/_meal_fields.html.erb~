@@ -1,5 +1,5 @@
 
-<div class="log-meal controls" id="legmealcontrol" data-id="1381803857377">
+<div class="log-meal controls" id="log-meal-control">
   
   <div class="log-meal-side">
     <%= f.select :eaten_at_time, series_of_times, {}, {:class => "log-meal-when span2"} %>
@@ -8,8 +8,8 @@
     </div>
   </div>
 
-  <button class="log-meal-photo-button btn btn-small" type="button" data-id="1381803857377" tabindex="-1" data-toggle="modal" data-target="#log-meal-photo-picker">
-    <img src="img/camerabutton.png" data-id="1381803857377" data-propkey="mealsById.1381803857377.photoUrl" data-noreplace="img/camerabutton.png">
+  <button class="log-meal-photo-button btn btn-small" type="button" tabindex="-1" data-toggle="modal" data-target="#log-meal-photo-picker">
+    <%= image_tag("camerabutton.png") %>
   </button>
 
   <%= f.text_area :notes, class: "log-meal-what" %>
