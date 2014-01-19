@@ -1,0 +1,7 @@
+
+  <label class="checkbox feat" for="bonus-homecooked" onclick="javascript:void(0);">
+    <%= check_box_tag "log[food_feat_ids][#{@feat.id}]", @feat.id, @log.food_feats.include?(@feat) %>
+    <%= content_tag :span, "", class: "icon-homecooked" %>
+    <%= content_tag :span, @feat.description %>
+  </label>
+  

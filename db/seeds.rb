@@ -33,3 +33,15 @@
   food_habits_more.each do |key, value|
     FoodHabit.find_or_create_by(name: key, amount: value)
   end
+
+
+  food_feats = Array.new
+  food_feats << 'I made my own meal(s).'
+  food_feats << 'I ate locally grown food.'
+  food_feats << 'I ate organic veggies.'
+  food_feats << 'I ate sustainable seafood.'
+  food_feats << 'I ate grass-fed meat.'
+
+  food_feats.each do |feat|
+   FoodFeat.find_or_create_by(description: feat) 
+  end

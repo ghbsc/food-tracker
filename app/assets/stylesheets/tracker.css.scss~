@@ -5142,7 +5142,7 @@ a.btn-success,a.btn-primary {
   text-shadow: 1px 1px 1px #ffb0b0;
 }
 
-.datepicker {
+/*.datepicker {
   background-color: white;
   border-color: #999;
   border-color: rgba(0,0,0,0.2);
@@ -5289,7 +5289,7 @@ a.btn-success,a.btn-primary {
 .datepicker .selected {
   background-color: #ccc;
   color: white;
-}
+}*/
 
 .stream-none,#stream-loading {
   clear: right;

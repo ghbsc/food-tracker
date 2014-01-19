@@ -69,7 +69,7 @@
   <section id="log-measurements">
     <div class="page-header">
       <h3>Measurements
-       <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='measurement-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
        <button type="button" class="btn btn-small help-button">?</button>
       </h3>
 
@@ -89,142 +89,20 @@
     
 <div id="log-measurements-fields">
  <!--  -->
-
-<div id="log-measurement-weight" class="log-measurement control-group" style="display: block;">
-    <label for="measurement-weight">Weight:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-weight" name="measurement-weight" data-measurement="weight" data-propkey="measurementsById.weight.value"><span class="add-on">lbs</span>
-        <input type="hidden" name="weight_units" value="lbs" data-propkey="measurementsById.weight.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-bodyfat" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-bodyfat">Body Fat:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-bodyfat" name="measurement-bodyfat" data-measurement="bodyfat" data-propkey="measurementsById.bodyfat.value"><span class="add-on">%</span>
-        <input type="hidden" name="bodyfat_units" value="%" data-propkey="measurementsById.bodyfat.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-bodywater" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-bodywater">Body Water:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-bodywater" name="measurement-bodywater" data-measurement="bodywater" data-propkey="measurementsById.bodywater.value"><span class="add-on">%</span>
-        <input type="hidden" name="bodywater_units" value="%" data-propkey="measurementsById.bodywater.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-neck" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-neck">Neck:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-neck" name="measurement-neck" data-measurement="neck" data-propkey="measurementsById.neck.value"><span class="add-on">in</span>
-        <input type="hidden" name="neck_units" value="in" data-propkey="measurementsById.neck.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-bicep" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-bicep">Bicep:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-bicep" name="measurement-bicep" data-measurement="bicep" data-propkey="measurementsById.bicep.value"><span class="add-on">in</span>
-        <input type="hidden" name="bicep_units" value="in" data-propkey="measurementsById.bicep.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-forearm" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-forearm">Forearm:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-forearm" name="measurement-forearm" data-measurement="forearm" data-propkey="measurementsById.forearm.value"><span class="add-on">in</span>
-        <input type="hidden" name="forearm_units" value="in" data-propkey="measurementsById.forearm.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-chest" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-chest">Chest:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-chest" name="measurement-chest" data-measurement="chest" data-propkey="measurementsById.chest.value"><span class="add-on">in</span>
-        <input type="hidden" name="chest_units" value="in" data-propkey="measurementsById.chest.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-waist" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-waist">Waist:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-waist" name="measurement-waist" data-measurement="waist" data-propkey="measurementsById.waist.value"><span class="add-on">in</span>
-        <input type="hidden" name="waist_units" value="in" data-propkey="measurementsById.waist.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-hips" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-hips">Hips:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-hips" name="measurement-hips" data-measurement="hips" data-propkey="measurementsById.hips.value"><span class="add-on">in</span>
-        <input type="hidden" name="hips_units" value="in" data-propkey="measurementsById.hips.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-thigh" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-thigh">Thigh:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-thigh" name="measurement-thigh" data-measurement="thigh" data-propkey="measurementsById.thigh.value"><span class="add-on">in</span>
-        <input type="hidden" name="thigh_units" value="in" data-propkey="measurementsById.thigh.units">
-      </div>
-    </div>
-</div>
-
-<div id="log-measurement-calf" class="log-measurement control-group" style="display: none;">
-    <label for="measurement-calf">Calf:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-calf" name="measurement-calf" data-measurement="calf" data-propkey="measurementsById.calf.value"><span class="add-on">in</span>
-        <input type="hidden" name="calf_units" value="in" data-propkey="measurementsById.calf.units">
-      </div>
-    </div>
-</div>
-
+  <%= f.fields_for :measurements do |builder| %>
+    <%= render "measurement_fields", :f => builder %>
+  <% end %>  
 <!--  -->
 </div>
 
 <div id="log-measurements-show-button" class="form-horizontal-indent" style="display: block;"> 
-  <a href="javascript:void(0);">(Show other measurements)</a><p></p>
+  <a href="javascript:void(0);" id="show-other-measurements">(Show other measurements)</a><p></p>
 </div>
 
 <div id="log-measurements-hide-button" class="form-horizontal-indent" style="display: none;"> 
-  <a href="javascript:void(0);">(Hide empty measurements)</a><p></p>
+  <a href="javascript:void(0);" id="hide-other-measurements">(Hide empty measurements)</a><p></p>
 </div>
 
- <!--  -->
-{{#each measurements}}
-<div id="log-measurement-{{id}}" class="log-measurement control-group" style="display:none">
-    <label for="measurement-{{id}}">{{label}}:&nbsp;</label>
-    <div class="controls">
-      <div class="input-append">
-        <input class="log-measurement-input" type="number" step="0.01" id="measurement-{{id}}" name="measurement-{{id}}" data-measurement="{{id}}" data-propkey="measurementsById.{{id}}.value"><span class="add-on">{{units}}</span>
-        <input type="hidden" name="{{id}}_units" value="{{units}}" data-propkey="measurementsById.{{id}}.units">
-      </div>
-    </div>
-</div>
-{{/each}}
-<!--  -->
-</script>
 
     <div id="log-period" style="display:none; margin-top: 10px;">
 
@@ -253,7 +131,7 @@
 
     <div class="page-header">
       <h3>Meals
-      <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='meal-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
       <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>
@@ -278,11 +156,11 @@
 
         <div id="log-meals-list">
            <!--  -->
-
-          <%= f.fields_for :meals do |builder| %>
-            <%= render "meal_fields", :f => builder %>
-          <% end %>  
-          
+          <% if params[:action] != 'new' %>
+            <%= f.fields_for :meals do |builder| %>
+              <%= render "meal_fields", :f => builder %>
+            <% end %>  
+          <% end %> 
           <!--  -->
        </div>
 
@@ -346,7 +224,7 @@
 
     <div class="page-header">
       <h3>Food Goals
-        <a href='javascript:void(0)' id='meal-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
+        <a href='javascript:void(0)' id='food-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
        <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>
@@ -540,7 +418,7 @@
 
     <div class="page-header">
       <h3>Food Feats
-        <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='feat-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
         <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>
@@ -554,36 +432,13 @@
 <div id="log-foodgoals-bonuses" class="controls">
   <!--  -->
   
-  <label class="checkbox" for="bonus-homecooked" onclick="javascript:void(0);">
-    <input type="checkbox" name="bonus-homecooked" id="bonus-homecooked" value="homecooked" data-propkey="bonusesById.homecooked">
-    <span class="icon-homecooked"></span>
-    <span>I made my own meal(s).</span>
-  </label>
-  
-  <label class="checkbox" for="bonus-localfood" onclick="javascript:void(0);">
-    <input type="checkbox" name="bonus-localfood" id="bonus-localfood" value="localfood" data-propkey="bonusesById.localfood">
-    <span class="icon-localfood"></span>
-    <span>I ate locally grown food.</span>
-  </label>
-  
-  <label class="checkbox" for="bonus-organicveg" onclick="javascript:void(0);">
-    <input type="checkbox" name="bonus-organicveg" id="bonus-organicveg" value="organicveg" data-propkey="bonusesById.organicveg">
-    <span class="icon-organicveg"></span>
-    <span>I ate organic veggies.</span>
-  </label>
-  
-  <label class="checkbox" for="bonus-sustseafood" onclick="javascript:void(0);">
-    <input type="checkbox" name="bonus-sustseafood" id="bonus-sustseafood" value="sustseafood" data-propkey="bonusesById.sustseafood">
-    <span class="icon-sustseafood"></span>
-    <span>I ate sustainable seafood.</span>
-  </label>
-  
-  <label class="checkbox" for="bonus-grassfedmeat" onclick="javascript:void(0);">
-    <input type="checkbox" name="bonus-grassfedmeat" id="bonus-grassfedmeat" value="grassfedmeat" data-propkey="bonusesById.grassfedmeat">
-    <span class="icon-grassfedmeat"></span>
-    <span>I ate grass-fed meat.</span>
-  </label>
-  
+  <% FoodFeat.all.each do |feat| %>
+    <%= fields_for feat, index: feat do |builder|%>
+      <% @feat = feat %>
+      <%= render "food_feat_fields", object: @feat %>
+    <% end %>
+  <% end %>
+
 <!--  -->
 </div>
 
@@ -596,7 +451,7 @@
 
     <div class="page-header">
       <h3>Tags
-        <button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>
+        <a href='javascript:void(0)' id='tag-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
         <button type="button" class="btn btn-small help-button">?</button>
       </h3>
     </div>
@@ -630,7 +485,8 @@ anything that might affect your progress and that happens semi-regularly.
         <% end %>
       <%# end %> 
     <% end %>
-  
+
+    <!-- Commented out --> 
     <% if false %> 
       <%= f.fields_for :tags do |builder| %>
         <%= render "tag_fields", :f => builder %>
@@ -688,7 +544,7 @@ anything that might affect your progress and that happens semi-regularly.
     
     <div class="page-header">
       <h3>Notes
-        <a href='javascript:void(0)' id='tag-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
+        <a href='javascript:void(0)' id='note-save-button' class='btn btn-small btn-primary mini-save-button'>Save</a>
         <%# link_to "Save", href:'javascript:void(0)', {}, id: 'tag-save-button', class: 'btn btn-small btn-primary mini-save-button' %>
     <!--<button type="submit" class="btn btn-small btn-primary mini-save-button" data-startmsg="Save" data-loadingmsg="Saving..." data-successmsg="Saved!">Save</button>-->
         <button type="button" class="btn btn-small help-button">?</button>
@@ -706,7 +562,7 @@ anything that might affect your progress and that happens semi-regularly.
 
 <div class="control-group">
  <div class="controls">
-  <textarea id="log-notes-field" name="notes" class="span7" rows="4" data-propkey="notes"></textarea>
+   <%= render 'note_fields' %>
  </div>
 </div>
     </div>

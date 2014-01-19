@@ -3,7 +3,7 @@ class LogsController < ApplicationController
     #@log = Log.new
     @log = current_user.logs.build(logged_date: params[:logged_date] ||= Date.today)
     @log.meals.build
-    
+    @log.measurements.build
   end
 
   def create
@@ -13,6 +13,7 @@ class LogsController < ApplicationController
     #@log= Log.new(log_params)
 
     save_tags
+    save_feats
 
     respond_to do |format|
       if @log.save
@@ -25,7 +26,7 @@ class LogsController < ApplicationController
         end
 
         format.js   { render file: 'app/views/logs/create_update.js.erb' }
-        format.html { redirect_to edit_log_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d')) }
+        format.html { redirect_to logs_edit_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d')) }
         format.json { render json: @log, status: :created, location: @log }
         
         #redirect_to @log, :notice => "Successfully created survey."
@@ -40,13 +41,15 @@ class LogsController < ApplicationController
   end
   
   def edit
+    #Only need to pull look up values. HABTM will do that automatically based on the defined relationship 
     @tags = current_user.tags 
     
     logged_date = params[:logged_date] ||= Date.today
     logged_date = logged_date.to_date
 
     @log = Log.detail(current_user.id, logged_date)
-
+    @log.measurements.build if @log && @log.measurements.empty?
+    
     if @log.nil?
       #redirect_to new_log_path(logged_date: logged_date)
       redirect_to logs_new_path << "?logged_date=#{logged_date}"
@@ -62,6 +65,7 @@ class LogsController < ApplicationController
     @log = Log.detail(current_user.id, params[:log][:logged_date].to_date)
   
     save_tags
+    save_feats
 
     respond_to do |format|
       if @log.update_attributes(log_params)
@@ -79,7 +83,7 @@ class LogsController < ApplicationController
         end 
         
         format.js   { render file: 'app/views/logs/create_update.js.erb' }
-        format.html { redirect_to edit_log_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d')) }
+        format.html { redirect_to logs_edit_path(logged_date: params[:log][:logged_date].to_date.strftime('%Y-%m-%d')) }
         format.json { render json: @log, status: :created, location: @log }
       else
         format.html { render action: "edit" }  #render 'edit'
@@ -91,7 +95,7 @@ class LogsController < ApplicationController
   
   private
     def log_params
-      params.require(:log).permit(:notes, :logged_date, meals_attributes: [:id, :eaten_at, :eaten_at_time, :notes, :_destroy])
+      params.require(:log).permit(:notes, :logged_date, meals_attributes: [:id, :eaten_at, :eaten_at_time, :notes, :_destroy], measurements_attributes: [:id, :weight, :body_fat, :body_water, :neck, :bicep, :forearm, :chest, :waist, :hips, :thigh, :calf, :_destroy])
     end
 
     def set_meal_params
@@ -122,6 +126,10 @@ class LogsController < ApplicationController
       #existing_tag_ids = params[:log][:tag_ids] - ['0'] 
 
       @log.tag_ids = params[:log][:tag_ids].values if params[:log] && params[:log][:tag_ids]
+    end
+
+    def save_feats
+      @log.food_feat_ids = params[:log][:food_feat_ids].values if params[:log] && params[:log][:food_feat_ids]
     end
 
 end

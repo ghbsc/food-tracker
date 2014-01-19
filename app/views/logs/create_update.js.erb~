@@ -1,6 +1,6 @@
 //Enable the template after submission 
-$('#tags_template :input').prop("disabled", true);
-$('#meals_fields_template :input').prop("disabled", true);
+$('#tags_template :input').prop("disabled", false);
+$('#meals_fields_template :input').prop("disabled", false);
 
 //Change partial & full postbacks to update after a partial create
 <% if @action == 'create' %>
@@ -47,5 +47,51 @@ $('#meals_fields_template :input').prop("disabled", true);
   $form.replaceWith($form.html());
 
   //$('#lmg-meals-list').append(outputStr);
+
+<% elsif @log_section == 'measurement' %>
+
+  $('#measurement-save-button').html('Saved!');   
+  
+  var outputStr = '';
+
+  outputStr += '<%= form_for @log, html: {class: 'form-horizontal', id: 'measurement_temp_form'} do |f| %>';
+
+  <%= f.fields_for :measurements do |builder| %>
+    outputStr += '<%= escape_javascript(render "measurement_fields", :f => builder) %>';
+  <% end %>
+
+  outputStr += '<% end %>';
+
+  $('#measurement_form').replaceWith(outputStr);
+  
+  $form = $('#measurement_temp_form');
+  $form.replaceWith($form.html());
+
+<% elsif @log_section == 'feat' %>
+
+  $('#feat-save-button').html('Saved!');   
+  $('#feat_form').replaceWith('');
+
+  var outputStr = '';
+
+  <% FoodFeat.all.each do |feat| %>
+    <% @feat = feat %>
+    <%= fields_for feat, index: feat do |builder|%>
+      outputStr += '<%= escape_javascript(render "food_feat_fields", object: @feat) %>';
+    <% end %>
+  <% end %>
+
+  $('#log-foodgoals-bonuses').append(outputStr);
+
+<% elsif @log_section == 'note' %>
+
+  $('#note-save-button').html('Saved!');   
+  $('#note_form').replaceWith('');
+  
+  var outputStr = '';
+
+  outputStr = '<%= render 'note_fields' %>';
+   
+  $('#log-notes .control-group .controls').append(outputStr);
 
 <% end %>

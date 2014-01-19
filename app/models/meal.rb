@@ -3,7 +3,8 @@ class Meal < ActiveRecord::Base
   
   def eaten_at_time 
     #self.eaten_at.strftime("%l:%M%P")
-    eaten_at.strftime("%l:%M%P") unless eaten_at.nil?
+    eaten_at.strftime("%l:%M%P") if eaten_at 
+    #unless eaten_at.nil?
   end 
 
   def eaten_at_time=(eat_time)

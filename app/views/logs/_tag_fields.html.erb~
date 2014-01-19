@@ -2,9 +2,9 @@
 <%= content_tag(:div, :id => "log-tag#{@atag.name}", :class => "log-tag-field") do %> 
   <label onclick="javascript:void(0);" class="log-tag-field-label checkbox" style="display:inline-block;">
     <% if false %> 
-    <%= f.check_box :id %>
-    <%= content_tag :span, :name, :class => "log-tag tag-neutral" %>
-    <%= f.hidden_field :name %>
+      <%= f.check_box :id %>
+      <%= content_tag :span, :name, :class => "log-tag tag-neutral" %>
+      <%= f.hidden_field :name %>
     <% end %> 
 
     <%= check_box_tag (@atag.new_record? && "log[tag_ids][new_tags]") || "log[tag_ids][#{@atag.id}]", @atag.id ||= 0, @log.tags.include?(@atag) %>

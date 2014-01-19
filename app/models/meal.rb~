@@ -6,7 +6,7 @@ class Meal < ActiveRecord::Base
     eaten_at.strftime("%l:%M%P") unless eaten_at.nil?
   end 
 
-  def birthday_month=(month)
+  def eaten_at_time=(eat_time)
     #self.birthday = "#{month}"  
   end
 end

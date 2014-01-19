@@ -202,6 +202,52 @@ $(function() {
     $('#meal_form').submit(); 
   });
 
+  $('#measurement-save-button').click(function() {
+    var logged_date = $('#log_logged_date').val();
+
+    $('.log-measurement').wrapAll('<form accept-charset="UTF-8" action="' + get_url() + '" data-remote="true" id="measurement_form" method="post"></form>');
+
+    if(is_upate()) 
+      $('#measurement_form').append('<input name="_method" type="hidden" value="patch" />');
+    
+    $('#measurement_form').append('<input name="log[logged_date]" type="hidden" value="' + logged_date + '" />');
+    $('#measurement_form').append('<input name="log[section]" type="hidden" value="measurement" />');
+    
+    $('#measurement-save-button').html('Saving...');   
+    $('#measurement_form').submit(); 
+  });
+  
+  $('#feat-save-button').click(function() {
+    var logged_date = $('#log_logged_date').val();
+
+    $('.feat').wrapAll('<form accept-charset="UTF-8" action="' + get_url() + '" data-remote="true" id="feat_form" method="post"></form>');
+
+    if(is_upate()) 
+      $('#feat_form').append('<input name="_method" type="hidden" value="patch" />');
+    
+    $('#feat_form').append('<input name="log[logged_date]" type="hidden" value="' + logged_date + '" />');
+    $('#feat_form').append('<input name="log[section]" type="hidden" value="feat" />');
+    
+    $('#feat-save-button').html('Saving...');   
+    $('#feat_form').submit(); 
+  }); 
+    
+  
+  $('#note-save-button').click(function() {
+    var logged_date = $('#log_logged_date').val();
+
+    $('#log-notes-field').wrapAll('<form accept-charset="UTF-8" action="' + get_url() + '" data-remote="true" id="note_form" method="post"></form>');
+
+    if(is_upate()) 
+      $('#note_form').append('<input name="_method" type="hidden" value="patch" />');
+    
+    $('#note_form').append('<input name="log[logged_date]" type="hidden" value="' + logged_date + '" />');
+    $('#note_form').append('<input name="log[section]" type="hidden" value="note" />');
+    
+    $('#note-save-button').html('Saving...');   
+    $('#note_form').submit(); 
+  });
+
   function get_url()
   {
     var url; 
@@ -220,6 +266,24 @@ $(function() {
     else
       return true; 
   }
+
+  $('#show-other-measurements').click(function() {
+    $('.log-measurement:not(:first)').toggle();
+    $('#log-measurements-hide-button').toggle();
+    $('#log-measurements-show-button').toggle();
+  });
+
+  $('#hide-other-measurements').click(function() {
+    $('.log-measurement:not(:first)').toggle();
+    $('#log-measurements-hide-button').toggle();
+    $('#log-measurements-show-button').toggle();
+    jQuery('html,body').animate({scrollTop:0},0);
+  });
+
+  
+  $('#log-measurements-hide-button').hide();
+  $('#log-measurements-show-button').show();
+  $('.log-measurement:not(:first)').hide();
 
   $("form:first").submit(function() {
     $('#meals_fields_template :input').prop("disabled", true);

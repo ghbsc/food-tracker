@@ -1,0 +1,112 @@
+
+<%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-weight" do %>
+  <%= f.label :weight, "Weight:" %>
+  <%= content_tag :div, class: "controls" do %>
+    <%= content_tag :div, class: "input-append" do %>
+      <%= f.text_field :weight, class: "log-measurement-input", id: "measurement-weight" %>
+      <%= content_tag :span, "lbs", class: "add-on"  %>
+    <% end %>
+  <% end %>
+  <%= f.hidden_field :id %>
+<% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-bodyfat" do %>
+    <%= f.label :body_fat, "Body Fat:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :body_fat, class: "log-measurement-input", id: "measurement-bodyfat" %>
+        <%= content_tag :span, "%", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-bodywater" do %>
+    <%= f.label :body_water, "Body Water:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :body_water, class: "log-measurement-input", id: "measurement-bodywater" %>
+        <%= content_tag :span, "%", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-neck" do %>
+    <%= f.label :neck, "Neck:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :neck, class: "log-measurement-input", id: "measurement-neck" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-bicep" do %>
+    <%= f.label :bicep, "Bicep:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :bicep, class: "log-measurement-input", id: "measurement-bicep" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-forearm" do %>
+    <%= f.label :forearm, "Forearm:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :forearm, class: "log-measurement-input", id: "measurement-forearm" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-chest" do %>
+    <%= f.label :chest, "Chest:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :chest, class: "log-measurement-input", id: "measurement-chest" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-waist" do %>
+    <%= f.label :waist, "Waist:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :waist, class: "log-measurement-input", id: "measurement-waist" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-hips" do %>
+    <%= f.label :hips, "Hips:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :hips, class: "log-measurement-input", id: "measurement-hips" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-thigh" do %>
+    <%= f.label :thigh, "Thigh:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :thigh, class: "log-measurement-input", id: "measurement-thigh" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, class: "log-measurement control-group", id: "log-measurement-calf" do %>
+    <%= f.label :calf, "Calf:" %>
+    <%= content_tag :div, class: "controls" do %>
+      <%= content_tag :div, class: "input-append" do %>
+        <%= f.text_field :calf, class: "log-measurement-input", id: "measurement-calf" %>
+        <%= content_tag :span, "in", class: "add-on"  %>
+      <% end %>
+    <% end %>
+  <% end %>
+

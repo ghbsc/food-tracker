@@ -1,6 +1,7 @@
 
 <%= content_tag(:div, :id => "log-tag#{@atag.name}", :class => "log-tag-field") do %> 
   <label onclick="javascript:void(0);" class="log-tag-field-label checkbox" style="display:inline-block;">
+    <!-- Commented out --> 
     <% if false %> 
       <%= f.check_box :id %>
       <%= content_tag :span, :name, :class => "log-tag tag-neutral" %>
