@@ -11,6 +11,10 @@
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
 
+*~
+*.swp
+*.swo
+
 # bundler state
 /.bundle
 /vendor/bundle/
