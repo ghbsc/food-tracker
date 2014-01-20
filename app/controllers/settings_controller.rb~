@@ -1,6 +1,0 @@
-class SettingsController < ApplicationController
-  def goals
-    @food_habits_more = FoodHabit.where(amount: 'more')
-    @food_habits_less = FoodHabit.where(amount: 'less')
-  end
-end
