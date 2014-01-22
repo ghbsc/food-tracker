@@ -28,8 +28,8 @@
       </a>
 
       <ul class="dropdown-menu">
-        <li><a href="/settings">Settings</a></li>
-        <li><a href="#" id="logout-button">Logout</a></li>
+        <li><%= link_to "Settings", edit_user_registration_path %></li>
+        <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
       </ul>
     </li> 
   <% else %>
