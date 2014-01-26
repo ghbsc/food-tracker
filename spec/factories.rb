@@ -5,5 +5,9 @@ FactoryGirl.define do
 
   end
 
+  factory :tag do
+    name "goovy"
+    user
+  end
 
 end
