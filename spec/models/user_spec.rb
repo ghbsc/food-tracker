@@ -40,6 +40,26 @@ describe User do
     end
   end
   
+  describe "when email is valid" do
+    it "should be valid" do
+      addresses = %w[test@quiz.com quiz@test.org 
+                      foobar@exam.gov]
+      addresses.each do |valid_address| 
+        @user.email = valid_address
+        expect(@user).to be_valid
+      end
+    end
+  end
+
+  describe "when email is already taken" do
+    before do
+      user_with_dupe_email = @user.dup
+      user_with_dupe_email.save 
+    end
+
+    it { should_not be_valid }
+  end 
+
   describe "tag associations" do
 
     before { @user.save }
