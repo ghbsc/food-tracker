@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   #before_save :set_birthday
   
   def birthday_month
-
+    birthday.strftime('%-m') 
   end 
 
   def birthday_month=(month)
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def birthday_day
-
+    birthday.strftime('%-d') 
   end
 
   def birthday_day=(day)
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   end
 
   def birthday_year
-  
+    birthday.strftime('%Y') 
   end
 
   def birthday_year=(year)

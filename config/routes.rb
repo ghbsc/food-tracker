@@ -21,6 +21,9 @@ FoodTracker::Application.routes.draw do
     root :to => 'visitors#new'#, as: :unauthenticated_root
   #end 
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }  
+#  devise_for :users do
+#    get 'users', :to => 'users#show', :as => :user_root 
+#  end
   #resources :users
 end
