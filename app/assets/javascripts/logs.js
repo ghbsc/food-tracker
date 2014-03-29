@@ -292,5 +292,35 @@ $(function() {
 
   $('[rel=tooltip]').tooltip();
 
+
+  /*var dragData = null;
+  omnaEl = document.getElementById('target'); 
+  $("#target").mousedown(function(ev) {
+    if(!dragData) {
+      ev=ev||event;
+      dragData={
+        x: ev.clientX-omnaEl.offsetLeft,
+        y: ev.clientY-omnaEl.offsetTop
+      };
+    }; 
+  });
+
+  $("#target").mousemove(function(ev) {
+    if(dragData) {
+      ev=ev||event;
+      omnaEl.style.left=ev.clientX-dragData.x+"px";
+      omnaEl.style.top=ev.clientY-dragData.y+"px";
+    } 
+  });
+
+  $("#target").mouseup(function(ev) {
+    if(dragData) {
+      ev=ev||event;
+      omnaEl.style.left=ev.clientX-dragData.x+"px";
+      omnaEl.style.top=ev.clientY-dragData.y+"px";
+      dragData=null;
+    } 
+  });*/
+
 });
 

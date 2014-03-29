@@ -2,7 +2,7 @@
     <li <%= "class=active" if params[:controller] =~ /registrations/ %>><%= link_to "Profile", edit_user_registration_path %>
     <li <%= "class=active" if params[:controller] =~ /goals/ %>><%= link_to "Goals", new_goal_path %> 
     <li><%= link_to "Reminders", 'new_reminders_path' %>
-    <li><%= link_to "Buddies", 'new_buddies_path' %>
+    <li <%= "class=active" if params[:controller] =~ /buddies/ %>><%= link_to "Buddies", buddies_new_path %>
     <li><%= link_to "Sharing", 'new_sharing_path' %>
     <li><%= link_to "Data Import", 'new_data_path' %>
   </ul>

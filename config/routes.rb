@@ -1,4 +1,8 @@
 FoodTracker::Application.routes.draw do
+  get 'buddies/new'
+  get 'buddies/receive'
+  get 'buddies/invite'
+  post "buddies", to: 'buddies#invite'
   #get "logs/new"
   #get "logs/edit"
 
