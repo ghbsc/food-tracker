@@ -11,11 +11,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, 
                                                 :password_confirmation, :remember_me, :location, :gender, 
                                                 :birthday, :avatar, :avatar_cache, :remove_avatar, 
-                                                :birthday_month, :birthday_day, :birthday_year) }
+                                                :birthday_month, :birthday_day, :birthday_year,
+                                                :invited_by) }
  
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :email, :password, 
                                                 :password_confirmation, :remember_me, :location, :gender, 
                                                 :birthday, :avatar, :avatar_cache, :remove_avatar, 
-                                                :birthday_month, :birthday_day, :birthday_year) }
+                                                :birthday_month, :birthday_day, :birthday_year,
+                                                :invited_by) }
   end
 end

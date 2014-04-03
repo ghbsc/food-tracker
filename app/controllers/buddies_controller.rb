@@ -4,7 +4,7 @@ class BuddiesController < ApplicationController
 
   def invite
     #respond_to do |format|
-      BuddyMailer.invite_email(params[:email_addresses]).deliver
+      BuddyMailer.invite_email(params[:email_addresses], current_user.id).deliver
 
       #format.html { redirect_to(buddies_invite_path, notice: 'Email was sent successfully') }
     #end

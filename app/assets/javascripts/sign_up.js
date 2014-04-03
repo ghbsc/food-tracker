@@ -11,6 +11,7 @@ $(function() {
     //$("#user_birthday").val($("#user_birthday_day").val() + "-" + $("#user_birthday_month").val() + "-" + $("#user_birthday_year").val());
 
     $('#user_birthday').val($('#user_birthday_year').val() + '-' + $('#user_birthday_month').val() + '-' + $('#user_birthday_day').val()); 
+    $('#user_invited_by').val($('#user_invited_by').val()); 
     $("#signup_form").submit();
   }); 
 });

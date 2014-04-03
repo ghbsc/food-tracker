@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115050914) do
+ActiveRecord::Schema.define(version: 20140330162819) do
 
   create_table "food_feats", force: true do |t|
     t.string   "description"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20140115050914) do
     t.string   "gender"
     t.datetime "birthday"
     t.string   "avatar"
+    t.integer  "invited_by"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

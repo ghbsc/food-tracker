@@ -3,9 +3,9 @@
    <%= form_for(resource, :html => {:class => "form-horizontal", :multipart => true, :id => "signup_form"}, 
                 :as => resource_name, :url => registration_path(resource_name)) do |f| %>
  
-<input type="hidden" name="invited_by" value="None">
+<!--<input type="hidden" name="invited_by" value="None">
 
-<div style="display:none;"><input id="csrf" name="csrf" type="hidden" value="76b4fc4d-d8fd-4b6b-a6e6-5e3b3b164271" /><input id="invited_by" name="invited_by" type="hidden" value="" /></div>
+<div style="display:none;"><input id="csrf" name="csrf" type="hidden" value="76b4fc4d-d8fd-4b6b-a6e6-5e3b3b164271" /><input id="invited_by" name="invited_by" type="hidden" value="" /></div>-->
 
 
       <div class="control-group">
@@ -68,23 +68,25 @@
         </div>
       </div>
 
-<div class="control-group">
-  <%= f.label :avatar %>
-  <div class="controls">
-    <%= image_tag("blankpic.png", :style => "margin-right: 10px; float: left; width: 50px;") %>
-    <% if false %> 
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %>
-    <% end %> 
-    <!--<img id="profile-photo" src="/img/blankpic.png" style="margin-right: 10px; float: left; width: 50px;">
-    <input id="photo" name="photo" type="file" value="" style="margin-top: 15px;">-->
-  </div>
-</div>
-<input name="photo_url" type="hidden">
+      <div class="control-group">
+        <%= f.label :avatar %>
+        <div class="controls">
+          <%= image_tag("blankpic.png", :style => "margin-right: 10px; float: left; width: 50px;") %>
+          <% if false %> 
+            <%= f.file_field :avatar %>
+            <%= f.hidden_field :avatar_cache %>
+          <% end %> 
+          <!--<img id="profile-photo" src="/img/blankpic.png" style="margin-right: 10px; float: left; width: 50px;">
+          <input id="photo" name="photo" type="file" value="" style="margin-top: 15px;">-->
+        </div>
+      </div>
+      <input name="photo_url" type="hidden">
 
-    <div class="form-actions">
-      <%= f.submit "Save", class: "btn btn-large btn-primary", id: "btn_submit"%> 
-      <!--<button class="btn btn-large btn-primary" type="submit" data-redirect="/start/goals" disabled>Save &rarr;</button>-->
-    </div>
+      <%= f.hidden_field :invited_by, value: params[:invited_by] %>
+
+      <div class="form-actions">
+        <%= f.submit "Save", class: "btn btn-large btn-primary", id: "btn_submit"%> 
+        <!--<button class="btn btn-large btn-primary" type="submit" data-redirect="/start/goals" disabled>Save &rarr;</button>-->
+      </div>
   <!--</form>-->
   <% end %>
