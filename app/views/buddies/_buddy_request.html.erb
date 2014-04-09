@@ -1,0 +1,11 @@
+    <li class="user-info well">
+        <%= image_tag("blankpic.png", :style => "margin-right: 10px; float: left; width: 50px;") %>
+        <div> 
+          <%= link_to @buddy_request.full_name, '' %>
+          <% userid = @buddy_request.id %>
+          <%= form_tag buddies_path << "/#{userid}", :method => 'post' do %>
+            <%= hidden_field_tag '_method', 'patch' %>
+            <%= submit_tag "Confirm", :name => nil, class: "btn confirm-request-button" %>
+          <% end %>
+        </div>
+    </li>

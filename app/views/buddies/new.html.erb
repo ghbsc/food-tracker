@@ -11,6 +11,18 @@
   </ul>
 </div>
 
+<% if @buddy_requests.any? %>
+  <div id="buddies-requests" style="clear: both; margin-top: 10px;">
+    <h3>Buddy requests</h3>
+    <ul id="buddies-requests-list" class="user-list">
+      <% @buddy_requests.each do |buddy_request| %>
+        <% @buddy_request = buddy_request %>
+        <%= render "buddy_request", object: @buddy_request %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div style="clear:both"></div>
 
 <h3 id="buddies-invite-header" style="display:none; margin-top:10px;">Invite more</h3>

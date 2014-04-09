@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
 
   #before_save :set_birthday
   
+  def self.buddy_requests(current_user)
+    where('invited_by = ?', current_user.id)
+  end
+
+  def full_name 
+    [first_name, last_name].join(' ')
+  end
+
   def birthday_month
     birthday.strftime('%-m') unless birthday.nil? 
   end 
