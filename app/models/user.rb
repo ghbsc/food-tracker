@@ -24,7 +24,11 @@ class User < ActiveRecord::Base
   #before_save :set_birthday
   
   def self.buddy_requests(current_user)
-    where('invited_by = ?', current_user.id)
+    where('invited_by = ? and (is_confirmed is null or is_confirmed = false)', current_user.id)
+  end
+
+  def self.your_buddies(current_user)
+    where('invited_by = ? and is_confirmed = true', current_user.id)
   end
 
   def full_name 

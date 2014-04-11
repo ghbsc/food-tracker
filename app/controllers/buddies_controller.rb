@@ -1,7 +1,7 @@
 class BuddiesController < ApplicationController
   def new
     @buddy_requests = User.buddy_requests(current_user)
-    #@your_buddies = User.your_buddies(current_user) 
+    @your_buddies = User.your_buddies(current_user) 
   end
 
   def invite

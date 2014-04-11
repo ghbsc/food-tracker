@@ -23,6 +23,18 @@
   </div>
 <% end %>
 
+<% if @your_buddies.any? %>
+  <div id="buddies-already" style="clear: both; margin-top: 10px;">
+    <h3>Your Buddies</h3>
+    <ul id="buddies-already-list" class="user-list">
+      <% @your_buddies.each do |your_buddy| %>
+        <% @your_buddy = your_buddy %>
+        <%= render "your_buddy", object: @your_buddy %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div style="clear:both"></div>
 
 <h3 id="buddies-invite-header" style="display:none; margin-top:10px;">Invite more</h3>
