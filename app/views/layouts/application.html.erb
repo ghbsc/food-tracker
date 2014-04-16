@@ -18,7 +18,7 @@
     </header>
     <main role="main">
       <div class="container"><!--remove all nested div-->
-        <%= render 'layouts/settings_navigation' if params[:controller] =~ /goals|reminders|buddies|sharing|data/ || (params[:controller] =~ /registrations/ && params[:action] != 'new') %>
+        <%= render 'layouts/settings_navigation' if params[:controller] =~ /goals|reminders|buddies|sharing|data/ || (params[:controller] =~ /users/ && params[:action] != 'new') %>
         <%= render 'layouts/messages' %>
         <%= yield %>
         <footer>

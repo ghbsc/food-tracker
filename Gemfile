@@ -14,9 +14,10 @@ gem 'bootstrap-sass'
 #gem 'high_voltage'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'thin'
-gem 'devise'
+#gem 'devise'
 gem 'carrierwave'
 gem 'foreigner'
+gem 'bcrypt-ruby', '~> 3.0.0'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

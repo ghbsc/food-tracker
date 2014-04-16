@@ -1,0 +1,113 @@
+
+<h2>Sign up</h2>
+
+
+<div class="alert alert-success" style="display:none" id="anon-user-promo">
+      Want to improve your eating habits for the better? You can use our service to track your progress. <a href="/welcome">Learn more.</a>
+    </div>
+      
+        <!--[if lt IE 7]>
+    <script type="text/javascript" 
+   src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+    <script>
+     // The conditional ensures that this code will only execute in IE,
+     // Therefore we can use the IE-specific attachEvent without worry
+     window.attachEvent("onload", function() {
+       CFInstall.check({
+         mode: "overlay"
+       });
+     });
+    </script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <div class="alert alert-warning">
+    <span class="icon-reminder"></span>
+      Our site works best in <a href="http://browsehappy.com/">modern browsers</a>.
+      We recommend upgrading or installing the
+      <a href="http://www.google.com/chromeframe">Google Chrome Frame</a> plugin for the best experience.
+    </div>
+    <![endif]-->
+
+    
+<div class="start-content">
+
+  <ol class="start-progress">
+    <li class="start-progress-doing"> <span>1</span>         Signup 
+    <li class="start-progress-todo">  <span>2</span>         Goals
+    <li class="start-progress-divider"></li>
+    <li class="start-progress-todo">  <span>3</span>         Reminders
+    <li class="start-progress-todo">  <span>4</span>         Sharing
+    <li class="start-progress-todo">  <span>5</span>         Buddies
+  </ol>
+
+  <p>Before we ask you a few questions, please sign up
+  so we can remember your information.
+  </p>
+  <br>
+
+  <div class="form-horizontal-indent" style="margin-bottom:20px;">
+    <button class="btn btn-primary" id="facebook-button" href="#">
+     Sign up with Facebook <img src="/img/facebookbg.png" style="width:24px; height: 33px;">
+    </button>
+  </div>
+
+  <div id="start-signup-form">
+   <div class="form-horizontal-indent" style="margin-bottom:10px;">Or sign up with your email address:</div>
+    
+    <%= render "user_form" %>
+
+
+  </div>
+
+  <form style="display:none;" id="facebook-signup-form">
+    <input name="invited_by" value="None">
+    <input name="first_name">
+    <input name="last_name">
+    <input name="email">
+    <input name="facebook_id">
+    <input name="location">
+    <input name="gender">
+    <input name="birthday_month">
+    <input name="birthday_day">
+    <input name="birthday_year">
+    <input name="photo_url">
+  </form>
+
+</div>
+
+
+  </div> 
+  <!-- /Container -->
+  
+
+   <div id="fb-root"></div>
+
+
+
+  
+<div id="feedback-popup" class="modal hide" style="display: none;" data-keyboard="true" data-backdrop="static">
+  <form id="feedback-form">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Send us feedback</h3>
+  </div>
+  <div class="modal-body">
+    <p style="font-size:16px;">We love feedback! If you have ideas, bugs, or 
+     questions, just tell us here.
+    </p>
+    <textarea name="comment" style="width:98%; height: 50px; margin-bottom: 10px;"></textarea>
+    <div id="feedback-form-anon" style="display:none">
+      <p>Please let us know your email address so that we can get back to you:</p>
+      <input name="email" type="text">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="submit" id="feedback-send-button" data-startmsg="Send" data-loadingmsg="Sending..." data-successmsg="Sent!">Send</button>
+    <button class="btn close-button" type="button" data-dismiss="modal">Cancel</button>
+  </div>
+ </form>
+</div>
+
+
+<%# render "devise/shared/links" %>

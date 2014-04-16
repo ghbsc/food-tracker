@@ -1,0 +1,84 @@
+<%= form_for @user, :html => {:class => "form-horizontal", :multipart => true, :id => "signup_form"} do |f| %>
+  <div class="control-group">
+    <%= f.label :email %>  
+    <!--<label for="email">Email</label>-->
+    <div class="controls">
+      <%= f.email_field :email, :autofocus => true %> 
+      <!--<input id="email" name="email" type="text" value="" />-->
+    </div>
+  </div>
+
+  <%# if params[:action] == 'new' %>
+    <div class="control-group">
+      <%= f.label :password %>
+      <!--<label for="password">Password</label>-->
+      <div class="controls">
+        <%= f.password_field :password %>
+        <!--<input id="password" name="password" type="password" value="" />-->
+      </div>
+    </div>
+  <%# end %>
+
+  <div class="control-group">
+    <%= f.label :first_name %>
+    <!--<label for="first_name">First Name</label>-->
+    <div class="controls">
+      <%= f.text_field :first_name %>
+      <!--<input id="first_name" name="first_name" type="text" value="" />-->
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :last_name %>
+    <div class="controls">
+      <%= f.text_field :last_name %> 
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :location %> 
+    <div class="controls">
+      <%= f.text_field :location %> 
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :gender %>
+    <div class="controls">
+      <%= f.collection_select :gender, genders, :first, :last, {}, {:class => "span2"} %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label>Birthday</label>
+    <div class="controls">
+      <%= f.select :birthday_month, birthday_months.collect { |key, value| [value, key] }, {:prompt => "Month"}, {:class => "span1"}%>
+      <%= f.select :birthday_day, birthday_days, {:prompt => "Day"}, {:class => "span1"}%>
+      <%= f.select :birthday_year, birthday_years, {:prompt => "Year"}, {:class => "span1"}%>
+      <%= f.hidden_field :birthday %> 
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :avatar %>
+    <div class="controls">
+      <%= image_tag("blankpic.png", :style => "margin-right: 10px; float: left; width: 50px;") %>
+      <% if false %> 
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      <% end %> 
+      <!--<img id="profile-photo" src="/img/blankpic.png" style="margin-right: 10px; float: left; width: 50px;">
+      <input id="photo" name="photo" type="file" value="" style="margin-top: 15px;">-->
+    </div>
+  </div>
+  <input name="photo_url" type="hidden">
+
+  <%= f.hidden_field :invited_by, value: params[:invited_by] %>
+
+  <div class="form-actions">
+    <%= f.submit "Save", class: "btn btn-large btn-primary", id: "btn_submit"%> 
+    <!--<button class="btn btn-large btn-primary" type="submit" data-redirect="/start/goals" disabled>Save &rarr;</button>-->
+  </div>
+<!--</form>-->
+
+<% end %>

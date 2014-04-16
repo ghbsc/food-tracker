@@ -1,0 +1,88 @@
+<!-- Container -->
+  <div class="container"> 
+    <div class="alert alert-success" style="display:none" id="anon-user-promo">
+      Want to improve your eating habits for the better? You can use our service to track your progress. <a href="/welcome">Learn more.</a>
+    </div>
+
+    
+   
+   <div class="page-header">
+     <h1>Login
+         
+     </h1>
+   </div>
+   
+
+    
+      
+
+
+        <!--[if lt IE 7]>
+    <script type="text/javascript" 
+   src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+    <script>
+     // The conditional ensures that this code will only execute in IE,
+     // Therefore we can use the IE-specific attachEvent without worry
+     window.attachEvent("onload", function() {
+       CFInstall.check({
+         mode: "overlay"
+       });
+     });
+    </script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <div class="alert alert-warning">
+    <span class="icon-reminder"></span>
+      Our site works best in <a href="http://browsehappy.com/">modern browsers</a>.
+      We recommend upgrading or installing the
+      <a href="http://www.google.com/chromeframe">Google Chrome Frame</a> plugin for the best experience.
+    </div>
+    <![endif]-->
+
+    
+  <%= form_tag sessions_path , {:class => "form-horizontal", :multipart => true, :id => "login_form"} do %>
+    <div class="control-group">
+      <%= label_tag :email %> 
+      <div class="controls">
+        <%= email_field_tag :email, params[:email] %> 
+      </div>
+    </div>
+    <div class="control-group">
+      <label style="display:block" for="password">Password 
+        <a tabindex="0" style="font-size:10px" href="/forgot-password">(Forgot?)</a>
+      </label>
+      <div class="controls">
+        <%= password_field_tag :password %> 
+      </div>
+    </div>
+    <div class="controls">
+      <%= button_tag "Login", class: "btn btn-primary", style: "width:220px", id: "login-button" %> 
+      <!--<button class="btn btn-primary" style="width:220px;" id="login-button" type="submit" disabled>Login</button>  <img id="login-loading" src="img/loading_trans_16x16.gif" style="vertical-align: middle; display:none">-->
+    </div>
+  <% end %>
+  
+  <form id="login-form" class="form-horizontal" action="/login" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+</form>
+
+  <p class="form-horizontal-indent">Or...</p>
+  <form class="form-horizontal" method="post" action="/" id="login-facebook-form">
+ <div class="controls">
+ <button class="btn btn-primary" style="width:220px;" id="login-facebook-button" type="submit" disabled>
+   <!--<img src="img/facebookbg.png" style="width:24px; height: 33px;">-->
+        <%= image_tag("facebookbg.png", :style => "width:24px; height: 33px;") %>
+    <span>&nbsp; Login with Facebook</span>
+ </button>
+ <img id="login-facebook-loading" src="img/loading_big.gif" style="display:none; height: 33px; vertical-align: middle;">
+ <span id="login-facebook-errors" class="form-errors"></span>
+ </div>
+</form>
+  
+  <p  class="form-horizontal-indent" style="margin-top: 30px;">
+  Not a member yet? <%= link_to 'Sign up!', signup_path %>
+  </p>
+
+
+
+  </div> 
+  <!-- /Container -->

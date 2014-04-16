@@ -69,6 +69,4 @@ class User < ActiveRecord::Base
 #  def set_birthday
 #    self.birthday = "#@birthday_month-#@birthday_day-#@birthday_year".to_date
 #  end
-
-
-end
+end 

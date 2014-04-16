@@ -1,6 +1,6 @@
 <a id="header-logo" href="/" class="pull-left"></a>
 
-<% if user_signed_in? %>
+<% if signed_in? %>
   <ul id="nav-bar" class="nav"> 
     <li>
      <a href="/home">
@@ -18,7 +18,7 @@
    </ul>
  <% end %>
   <ul id="header-login" class="nav pull-right">
-  <% if user_signed_in? %>
+  <% if signed_in? %>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="http://www.gravatar.com/avatar/b96635f98f5709967882af64ac9f742e?s=100&d=http%3A%2F%2Fwww.eatdifferent.com%2Fimg%2Fblankpic.png">
@@ -28,15 +28,15 @@
       </a>
 
       <ul class="dropdown-menu">
-        <li><%= link_to "Settings", edit_user_registration_path %></li>
-        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li><%= link_to "Sign out", logout_path %></li>
       </ul>
     </li> 
   <% else %>
       <li>
-        <a href="/users/sign_in">
+        <%= link_to(login_path) do %>
           <span id="header-login-already" style="font-weight:normal; font-size: smaller;">Already a member?</span> Login
-        </a>
+        <% end %> 
       </li>
   </ul>
 <% end %>
