@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140412145900) do
+ActiveRecord::Schema.define(version: 20140416032236) do
 
   create_table "food_feats", force: true do |t|
     t.string   "description"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20140412145900) do
     t.boolean  "is_confirmed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
   end
 
 end
