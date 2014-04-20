@@ -14,7 +14,9 @@ FoodTracker::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
-  resources :sessions 
+  resources :sessions
+  resources :password_resets
+
   resources :goals, only: [:new, :create, :edit, :update] 
   resources :logs, only: [:create, :update] 
  

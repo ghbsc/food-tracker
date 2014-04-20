@@ -1,0 +1,18 @@
+
+<%= form_for @user, url: password_reset_path(params[:id]), html: { class: "form-horizontal", multipart: true, id: "password-reset-form"} do |f| %>
+  <div class="control-group">
+    <%= f.label :password %> 
+    <div class="controls">
+      <%= f.password_field :password %> 
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation %> 
+    <div class="controls">
+      <%= f.password_field :password_confirmation %> 
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.button "Update Password", class: "btn btn-primary", id: "form-save-button" %> 
+  </div>
+<% end %>

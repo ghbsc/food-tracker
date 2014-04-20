@@ -1,0 +1,24 @@
+<form class="form-horizontal" id="forgot-password-form">
+  <div class="control-group">
+   <label for="email">Email</label>
+   <div class="controls"><input type="text" name="email"></div>
+  </div>
+  <div class="form-actions">
+  <button id="form-save-button" class="btn btn-primary" type="submit" data-startmsg="Send" data-loadingmsg="Sending..." data-successmsg="Sent!">Send</button>
+  </div>
+</form>
+
+
+<p>If you have forgotten your password, we will send you an email to reset your password.</p>
+<%= form_tag password_resets_path, {:class => "form-horizontal", :multipart => true, :id => "forgot-forgot-form"} do %>
+  <div class="control-group">
+    <%= label_tag :email %> 
+    <div class="controls">
+      <%= email_field_tag :email, params[:email] %> 
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= button_tag "Send", class: "btn btn-primary", id: "form-save-button" %> 
+  </div>
+<% end %>
+<!--<span id="form-save-message" style="display:none">Check your email in a few minutes.</span>-->
