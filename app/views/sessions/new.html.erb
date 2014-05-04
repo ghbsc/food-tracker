@@ -50,8 +50,8 @@
     </div>
     <div class="control-group">
       <label style="display:block" for="password">Password
-        <%= link_to "Forgot?", new_password_reset_path %>  
-        <a tabindex="0" style="font-size:10px" href="/forgot-password">(Forgot?)</a>
+        <%= link_to "(Forgot?)", new_password_reset_path, style: "font-size:10px" %>  
+        <!--<a tabindex="0" style="font-size:10px" href="/forgot-password">(Forgot?)</a>-->
       </label>
       <div class="controls">
         <%= password_field_tag :password %> 

@@ -4,13 +4,27 @@ describe User do
 
   before do
     @user = User.new(email: 'foobar@fubu.org',
-                     password: 'quizquiz')
+                     password: 'quizquiz',
+                     password_confirmation: 'quizquiz')
   end
 
   subject { @user }
 
   it { should respond_to(:email) }
   it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:auth_token) }
+  it { should respond_to(:first_name) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:location) }
+  it { should respond_to(:gender) }
+  it { should respond_to(:birthday) }
+  it { should respond_to(:avatar) }
+  it { should respond_to(:invited_by) }
+  it { should respond_to(:is_confirmed) }
+  it { should respond_to(:password_reset_token) }
+  it { should respond_to(:password_reset_sent_at) }
 
   it { should be_valid }
 
@@ -19,15 +33,18 @@ describe User do
     it { should_not be_valid }
   end
 
-  describe "when email is not present" do
-    before { @user.password = ' ' }
-    it { should_not be_valid }
-  end
- 
-  describe "when password is too short" do
-    before { @user.password = 't' * 3 }
-    it { should_not be_valid }
-  end 
+#  describe "when password is not present" do
+#    before do
+#      @user.password = " "
+#      @user.password_confirmation = " "
+#    end
+#    it { should_not be_valid }
+#  end
+# 
+#  describe "when password is too short" do
+#    before { @user.password = 't' * 3 }
+#    it { should_not be_valid }
+#  end 
 
   describe "when email is invalid" do
     it "should be invalid" do
@@ -78,6 +95,18 @@ describe User do
       expect(@user.tags.to_a.length).to eq [older_tag, newer_tag].length
     end
 
+  end
+
+  describe "send password reset" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    it "generates a unique password_reset_token each time" do
+      user.send_password_reset
+      last_token = user.password_reset_token
+      user.send_password_reset
+
+      expect(user.password_reset_token).not_to eq(last_token)
+    end 
   end
 
 end
